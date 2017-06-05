@@ -1,0 +1,25 @@
+#+title: To-do List for Eldoro
+#+author: Peter Jones
+#+startup: content
+
+* Features
+** TODO Optionally skip headings marked as done
+** TODO Automated Tests
+** DONE Optionally clock in and out of org headings 
+   CLOSED: [2012-09-04 Tue 15:41]
+** DONE Use TAB to jump to the heading in an org buffer
+   CLOSED: [2012-09-04 Tue 15:26]
+** DONE Record the pomodori/breaks in the org file
+   CLOSED: [2012-09-04 Tue 13:03]
+** DONE Use font-locking for major sections
+   CLOSED: [2012-08-31 Fri 13:49]
+* Bugs
+** DONE Point jumps to 0 when buffer isn't focused
+   CLOSED: [2012-09-04 Tue 14:36]
+   When the Eldoro buffer is in a window, but that window isn't
+   focused, when the eldoro-update function is done running point is
+   at (point-min) for some reason.  This doesn't happen if the buffer
+   isn't in a window, or if the buffer is in the focused window.
+** DONE Buffer is keeping undo information
+   CLOSED: [2013-01-04 Fri 16:27]
+   - Eventually you get a warning about too much undo information.
