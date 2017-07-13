@@ -20,8 +20,9 @@
 (require 'benchmark-init)
 
 ;;; ---- 
-(ac-config-default)
+
 (require 'auto-complete-config)
+(ac-config-default)
 (require 'go-autocomplete)
 (require 'auto-complete)
 
@@ -43,6 +44,10 @@
 (setq ecb-version-check nil)
 (setq ecb-layout-name "left6")
 (setq ecb-show-sources-in-directories-buffer 'always)
+
+(require 'company)
+(global-company-mode t)
+
 
 
 (package-install 'intero)
@@ -256,7 +261,7 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" "c0dd5017b9f1928f1f337110c2da10a20f76da0a5b14bb1fec0f243c4eb224d4" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" default)))
+    ("f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" "c0dd5017b9f1928f1f337110c2da10a20f76da0a5b14bb1fec0f243c4eb224d4" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" default)))
  '(package-selected-packages
    (quote
     (function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core bind-key color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
@@ -268,6 +273,32 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
 ;; )
+
+;; irony mode
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+
+(defun replace-irony-with-irony-completion-hook ()
+      (define-key irony-mode-map [remap completion-at-point]
+	'irony-completion-at-point-async)
+      (define-key irony-mode-map [remap complete-symbol]
+	'irony-completion-at-point-async))
+(add-hook 'irony-mode-hook 'replace-irony-with-irony-completion-hook)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+;; company "complete anything" hooks
+(add-hook 'after-init-hook 'global-company-mode)
+(require 'company-irony)
+(company-irony t)
+(setq company-idle-delay              nil
+	    company-minimum-prefix-length   2
+	    company-show-numbers            t
+	    company-tooltip-limit           20
+	    company-dabbrev-downcase        nil
+	    company-backends                '((company-irony company-gtags))
+	    )
+
 (setq molokai-theme-kit t)
 ;;(load-theme 'monokai-theme t)
 ;;(prelude-require-package 'ace-jump-mode)
@@ -367,6 +398,9 @@
 (eval-after-load 'auto-complete
   '(define-key ac-mode-map (kbd "M-TAB") 'auto-complete))
 (put 'downcase-region 'disabled nil)
+;; company mode completion
+(eval-after-load 'company-mode
+  '(define-key company-mode-map (kbd "M-RET c") 'company-complete-common))
 
 ;; SET PATH so LateX works
 (getenv "PATH")
