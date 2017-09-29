@@ -86,9 +86,14 @@
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'intero-mode)
 
-(defun my-intero-check-hook () 
-  (flycheck-add-next-checker 'intero '(warning . haskell-hlint))
- (local-set-key (kbd "M-TAB") 'intero-company))
+(defun my-intero-check-hook ()
+  (with-eval-after-load 'intero
+    (with-eval-after-load 'flycheck
+      (flycheck-add-next-checker 'intero
+				 '(warning . haskell-hlint))
+      )
+    )
+  (local-set-key (kbd "M-TAB") 'intero-company)
  )
 
 (add-hook 'haskell-mode-hook 'my-intero-check-hook)
