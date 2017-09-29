@@ -25,6 +25,7 @@
 (ac-config-default)
 (require 'go-autocomplete)
 (require 'auto-complete)
+(auto-complete-mode t)
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -84,6 +85,15 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'intero-mode)
+
+(defun my-intero-check-hook () 
+  (flycheck-add-next-checker 'intero '(warning . haskell-hlint))
+ (local-set-key (kbd "M-TAB") 'intero-company))
+ )
+
+(add-hook 'haskell-mode-hook 'my-intero-check-hook)
+
+
 ; === 
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 ;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
