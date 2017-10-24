@@ -25,10 +25,14 @@
 (ac-config-default)
 (require 'go-autocomplete)
 (require 'auto-complete)
-(auto-complete-mode t)
+(global-auto-complete-mode t)
 
 (require 'auto-complete-config)
 (ac-config-default)
+;; Setup Icicles
+(require 'icicles)
+(icy-mode t)
+
 (require 'yasnippet)
 (yas-global-mode t)
 (require 'semantic)
@@ -49,7 +53,9 @@
 (require 'company)
 (global-company-mode t)
 
-
+;; setup zones at this point
+;;(require 'zones)
+;;(zone-mode t)
 
 (package-install 'intero)
 ;;; functions - TODO : move them somewhere seperately.
@@ -358,6 +364,8 @@
 (global-set-key (kbd "C-c <left>") 'winner-undo) 
 ;; You know, like Readline.
 (global-set-key (kbd "M-RET b") 'backward-kill-word)
+(global-set-key (kbd "M-RET m p") 'smartparens-mode)
+(global-set-key (kbd "M-RET r") 'global-writeroom-mode)
 
 ;; Align your code in a pretty way.
 (global-set-key (kbd "C-x \\") 'align-regexp)
