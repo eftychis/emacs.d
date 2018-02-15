@@ -26,12 +26,16 @@
 (require 'go-autocomplete)
 (require 'auto-complete)
 (global-auto-complete-mode t)
+(package-initialize)
 
 (require 'auto-complete-config)
 (ac-config-default)
 ;; Setup Icicles
 (require 'icicles)
 (icy-mode t)
+
+(require 'smartparens)
+(smartparens-global-mode t)
 
 (require 'yasnippet)
 (yas-global-mode t)
@@ -53,12 +57,19 @@
 (require 'company)
 (global-company-mode t)
 
+(require 'rust-mode)
+(require 'racer)
+
 ;; setup zones at this point
 ;;(require 'zones)
 ;;(zone-mode t)
 
 (package-install 'intero)
-;;; functions - TODO : move them somewhere seperately.
+
+;; completion popup is a bit slow: tuning the delay down a notch
+(setq company-idle-delay 0.3)
+;(setq company-tooltip-align-annotations t)
+;; functions - TODO : move them somewhere seperately.
 (defun my:ac-c-init()
   (require 'auto-complete-c-headers)
   (add-to-list 'ac-sources 'ac-source-c-headers)
@@ -111,6 +122,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-to-list 'completion-ignored-extensions ".hi")
 ;(speedbar-add-supported-extension ".hs")
+(add-hook 'rust-mode-hook 'racer-mode)
+
 ;(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (defun my-go-mode-hook ()
 ; Use goimports instead of go-fmt
@@ -265,7 +278,7 @@
 (add-hook 'TeX-mode-hook 'turn-on-reftex)
 (add-hook 'TeX-mode-hook
 	  (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
-			    (cons "\\(" "\\)"))))
+			  (cons "\\(" "\\)"))))
 ;; imenu hook for reftex
 (add-hook 'reftex-load-hook 'imenu-add-menubar-index)
 (add-hook 'reftex-mode-hook 'imenu-add-menubar-index)
