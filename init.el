@@ -11,15 +11,7 @@
 (require 'pallet)
 (pallet-mode t)
 
-;; TODO(eftychis): Need to do some package cleanup
-;;
-;(require 'package)
-;(package-initialize)
-					;(package-refresh-contents)
-
 (require 'benchmark-init)
-
-;;; ---- 
 
 (require 'auto-complete-config)
 (ac-config-default)
