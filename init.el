@@ -104,6 +104,17 @@
 	    ))
 
 
+(add-hook 'LaTeX-mode-hook (lambda ()
+			     (require 'auto-complete-auctex)
+			     (add-to-list 'ac-sources 'ac-source-math-unicode)
+			     (add-to-list 'ac-sources 'ac-source-math-latex)
+			     ))
+(add-hook 'TeX-mode-hook (lambda ()
+			     (require 'auto-complete-auctex)
+			     (add-to-list 'ac-sources 'ac-source-math-unicode)
+			     (add-to-list 'ac-sources 'ac-source-math-latex)
+			     ))
+
 
 (defun my:ac-semantic()
   (add-to-list 'ac-sources 'ac-source-semantic)
