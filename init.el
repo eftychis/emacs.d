@@ -60,10 +60,6 @@
 (require 'rust-mode)
 (require 'racer)
 
-;; setup zones at this point
-;;(require 'zones)
-;;(zone-mode t)
-
 (package-install 'intero)
 
 ;; completion popup is a bit slow: tuning the delay down a notch
@@ -272,7 +268,6 @@
 ;;;; end testing
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (add-hook 'LateX-mode-hook #'(add-to-list 'TeX-style-list "latex2e"))
-;;(add-hook 'LaTeX-mode-hook 'reftex-mode)
 (add-hook 'LaTeX-mode-hook 'LaTeX-math-mode)
 (setq reftex-plug-into-AUCTeX t)
 (setq reftex-allow-automatic-rescan t)

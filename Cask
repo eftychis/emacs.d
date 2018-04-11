@@ -73,6 +73,7 @@
 (depends-on "epc")
 (depends-on "epic")
 (depends-on "epl")
+(depends-on "exec-path-from-shell")
 (depends-on "f")
 (depends-on "facemenu+")
 (depends-on "find-file-in-project")
