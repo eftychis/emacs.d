@@ -23,8 +23,8 @@
 (require 'auto-complete-config)
 (ac-config-default)
 ;; Setup Icicles
-(require 'icicles)
-(icy-mode t)
+;;(require 'icicles)
+;;(icy-mode t)
 
 (require 'smartparens)
 (smartparens-global-mode t)
@@ -53,6 +53,10 @@
 (require 'racer)
 
 (package-install 'intero)
+
+;; load files
+(load-file "extra-buffer-functions.el")
+
 
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
@@ -324,12 +328,21 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" "c0dd5017b9f1928f1f337110c2da10a20f76da0a5b14bb1fec0f243c4eb224d4" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" default)))
+    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" "d3a406c5905923546d8a3ad0164a266deaf451856eca5f21b36594ffcb08413a" "3629b62a41f2e5f84006ff14a2247e679745896b5eaa1d5bcfbc904a3441b0cd" "f78de13274781fbb6b01afd43327a4535438ebaeec91d93ebdbba1e3fba34d3c" "a800120841da457aa2f86b98fb9fd8df8ba682cebde033d7dbf8077c1b7d677a" "d44939ef462b7efb9bb5739f2dd50b03ac9ecf98c4df6578edcf145d6a2d188d" "c0dd5017b9f1928f1f337110c2da10a20f76da0a5b14bb1fec0f243c4eb224d4" "7dd0db710296c4cec57c39068bfffa63861bf919fb6be1971012ca42346a417f" "49ad7c8d458074db7392f8b8a49235496e9228eb2fa6d3ca3a7aa9d23454efc6" "05c3bc4eb1219953a4f182e10de1f7466d28987f48d647c01f1f0037ff35ab9a" "a041a61c0387c57bb65150f002862ebcfe41135a3e3425268de24200b82d6ec9" default)))
+ '(org-agenda-files
+   (quote
+    ("~/WriteUps/prs.org" "~/WriteUps/todo.org" "~/WriteUps/personal/mytodos.org" "~/WriteUps/personal/today.org")))
  '(package-selected-packages
    (quote
-    (pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core bind-key color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (jedi exec-path-from-shell ac-racer company-racer cargo flycheck-rust flymake-rust ob-rust auto-complete-sage memory-usage facemenu+ hierarchy highlight zones yaml-mode flymake-haskell-multi hlint-refactor hasky-extensions pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core bind-key color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
- '(rainbow-identifiers-cie-l*a*b*-saturation 35))
+ '(rainbow-identifiers-cie-l*a*b*-saturation 35)
+ '(safe-local-variable-values
+   (quote
+    ((TeX-master . pitch\.tex)
+     (TeX-master . \.\./pitch\.tex)
+     (reftex-default-ibliography "../bib.bib")
+     (reftex-default-bibliography "bib.bib")))))
 ;;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -449,6 +462,75 @@
 (global-set-key (kbd "M-RET <") 'mc/mark-previous-like-this)
 (global-set-key (kbd "M-RET C->") 'mc/mark-all-like-this)
 (global-set-key (kbd "M-RET '") 'mc/edit-lines)
+
+;; Borrowed from xah
+;; TODO: move them into a separate file if they work fine
+(defun xah-forward-block (&optional n)
+        "Move cursor beginning of next text block.
+A text block is separated by blank lines.
+This command similar to `forward-paragraph', but this command's behavior is the same regardless of syntax table.
+URL `http://ergoemacs.org/emacs/emacs_move_by_paragraph.html'
+Version 2016-06-15"
+	(interactive "p")
+	(let ((n (if (null n) 1 n)))
+	  (search-forward-regexp "\n[\t\n ]*\n+" nil "NOERROR" n)))
+
+(defun xah-backward-block (&optional n)
+  "Move cursor to previous text block.
+See: `xah-forward-block'
+URL `http://ergoemacs.org/emacs/emacs_move_by_paragraph.html'
+Version 2016-06-15"
+	(interactive "p")
+	(let ((n (if (null n) 1 n))
+	      (-i 1))
+	  (while (<= -i n)
+	    (if (search-backward-regexp "\n[\t\n ]*\n+" nil "NOERROR")
+		(progn (skip-chars-backward "\n\t "))
+	      (progn (goto-char (point-min))
+		     (setq -i n)))
+	          (setq -i (1+ -i)))))
+
+(defun xah-beginning-of-line-or-block (&optional n)
+  "Move cursor to beginning of line, or beginning of current or previous text block.
+ (a text block is separated by blank lines)
+URL `http://ergoemacs.org/emacs/emacs_keybinding_design_beginning-of-line-or-block.html'
+version 2016-06-15"
+  (interactive "p")
+  (let ((n (if (null n) 1 n)))
+    (if (equal n 1)
+        (if (or (equal (point) (line-beginning-position))
+                (equal last-command this-command )
+                ;; (equal last-command 'xah-end-of-line-or-block )
+                )
+            (xah-backward-block n)
+          (beginning-of-line))
+      (xah-backward-block n))))
+
+(defun xah-end-of-line-or-block (&optional n)
+  "Move cursor to end of line, or end of current or next text block.
+ (a text block is separated by blank lines)
+URL `http://ergoemacs.org/emacs/emacs_keybinding_design_beginning-of-line-or-block.html'
+version 2016-06-15"
+  (interactive "p")
+  (let ((n (if (null n) 1 n)))
+    (if (equal n 1)
+        (if (or (equal (point) (line-end-position))
+                (equal last-command this-command )
+                ;; (equal last-command 'xah-beginning-of-line-or-block )
+                )
+            (xah-forward-block)
+          (end-of-line))
+      (progn (xah-forward-block n)))))
+
+
+(global-set-key (kbd "<PageUp>") 'xah-beginning-of-line-or-block) ; page up key
+(global-set-key (kbd "<PageDown>") 'xah-end-of-line-or-block) ; page down key
+
+;; (global-set-key (kbd "<home>") 'xah-backward-left-bracket)
+;; (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
+
+
+
 ;;(global-set-key (kbd " '") 'mc/edit-lines)
 
 ;; TODO : think this a bit and add a COND.
