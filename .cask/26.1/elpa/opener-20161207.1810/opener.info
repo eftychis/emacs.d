@@ -1,0 +1,175 @@
+This is opener.info, produced by makeinfo version 6.5 from opener.texi.
+
+This manual is for opener version 0.2.
+
+   Copyright (C) 2016 Tim Reddehase
+
+     All rights reserved.  This manual must accompany the source code of
+     the opener.el package.
+INFO-DIR-SECTION Emacs lisp libraries
+START-INFO-DIR-ENTRY
+* opener: (opener). Seamlessly open files via http(s) in buffer.
+END-INFO-DIR-ENTRY
+
+
+File: opener.info,  Node: Top,  Next: Overview,  Up: (dir)
+
+Top
+***
+
+This manual is for opener.el, version 0.2.
+
+* Menu:
+
+* Overview::
+* Installing::
+* Using opener::
+
+
+File: opener.info,  Node: Overview,  Next: Installing,  Prev: Top,  Up: Top
+
+1 Overview
+**********
+
+Opener is a small package that makes it possible to open URLs directly
+in a buffer, instead of going the way of downloading the corresponding
+file with your browser and then opening that file manually.  Users of
+_vim_ might be familar that behaviour already, since it is built into
+_vim_.
+
+   However opener doesn't just open any URL in buffer, only those that
+it determines correspond to a classic file.  The simple reason for that
+is, that normal webpages aren't really intended to be read via
+source-code.  Therefore those URLs are still opened in your favorite
+browser.  For information on how to customize the workflow and how to
+force it to open in a buffer, see *note Using opener::.
+
+
+File: opener.info,  Node: Installing,  Next: Using opener,  Prev: Overview,  Up: Top
+
+2 Installing
+************
+
+It is recommended to install opener.el via the MELPA package repository.
+However, it is still (as always) possible to do it by hand:
+
+   To manually install opener.el, clone the git repository it into a
+location of your choice (usually within your '~/.emacs.d') and add that
+location to your 'load-path'.
+
+2.1 Installing from MELPA
+=========================
+
+Follow these steps to install Octopress.el from the MELPA repository.
+
+     (require 'package)
+     (add-to-list 'package-archives
+     	     '("melpa" . "http://melpa.org/packages/") t)
+
+Then refresh your packages list:
+
+     M-x package-refresh-contents RET
+
+And finally, install opener.el:
+
+     M-x package-install RET opener RET
+
+2.2 Activating evil-mappings
+============================
+
+You'll need to require the _evil-opener_ package instead.
+
+
+File: opener.info,  Node: Using opener,  Prev: Installing,  Up: Top
+
+3 Using opener
+**************
+
+_Info:_ The combination of opener with evil is optional, though highly
+recommended.
+
+   * 'opener-open', will query the user for a URL or FILE to open.
+     Provide a universal argument to force the function to open URL in a
+     buffer instead of applying file-like-url checking semantics.
+   * 'opener-open-at-point', opens a URL or file at point.  Always
+     applies file-like-url checking semantics.
+
+3.1 Customizing opener to my needs
+==================================
+
+Opener defines a small number of variables that can be used to customize
+the behaviour and make it feel as smooth as you like it to be.
+
+3.1.1 After buffer-load hooks
+-----------------------------
+
+In the web data is often minified, to save space and to reduce
+transfer-costs (usually time).  A typical use-case would be therefore to
+unminify the resulting buffer if possible, in order to make it actually
+human-readable.  The OPENER-MAJOR-MODE-HOOKS variable allows you to hook
+functions into specific major-modes that are to be executed when the URL
+is opened via opener.  While it is always possible to just attach these
+hooks functions to the major-mode anyway, it would waste computing power
+to do this for normal files.
+
+   The variable contains a list of tuples (assoc-list) that maps a
+major-mode to a list of hook-functions that are to be executed in order
+and with the corresponding buffer set as the current-buffer.  The
+functions take no arguments.
+
+     (defun nxml-pretty-format ()
+       (interactive)
+       (save-excursion
+         (shell-command-on-region (point-min) (point-max) "xmllint --format -" (buffer-name) t)
+         (nxml-mode)
+         (deactivate-mark t)))
+
+     (setq-default opener-major-mode-hooks
+       '((nxml-mode (nxml-pretty-format))))
+
+   The example will auto-format and indent the buffer contents of a XML
+file using the 'xmllint' binary.
+
+3.1.2 Choose a custom browser
+-----------------------------
+
+The OPENER-URL-BROWSER-FUNCTION variable holds the reference to a
+function that can open a URL with the semantics of a browser.  It
+defaults to ''browse-url', which should work in most (if not all) cases.
+However this variable can be customized to either force a specific
+browser, provide an own implementation or to (for example) start
+xwidgets instead.  In any case the function is expected to take one
+argument, the URL.
+
+     (setq-default opener-url-browser-function
+       'xwidget-webkit-browse-url)
+
+3.2 What is a classic file-URL?
+===============================
+
+Although not defined like that, there are historically two types of used
+URLs.  One is called the _directory_-type and corresponds to URLs which
+path looks like it would correspond to a directory on a UNIX filesystem.
+For example
+
+     'http://example.com/my-directory/is-this-one/' or
+     'http://example.com/my-directory'.
+
+   However there are also URLs which much more clearly seem to resemble
+a file in the path-section of the URL, for example
+
+     'http://example.com/sitemap.xml.gz' or
+     'http://example.com/index.html'.
+
+   We call these file-URLs in this manual, as it pertains to the kind of
+URLs that will be handled by opener.
+
+
+
+Tag Table:
+Node: Top395
+Node: Overview565
+Node: Installing1359
+Node: Using opener2286
+
+End Tag Table
