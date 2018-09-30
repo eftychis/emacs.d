@@ -55,8 +55,7 @@
 (package-install 'intero)
 
 ;; load files
-(load-file "extra-buffer-functions.el")
-
+(load-file (expand-file-name "extra-buffer-functions.el" user-emacs-directory))
 
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
