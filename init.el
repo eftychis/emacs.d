@@ -415,6 +415,10 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+;; no exempt buffers for god mode
+(setq god-exempt-major-modes nil)
+(setq god-exempt-predicates nil)
+
 
 ;; disable god mode on overwrite
 (defun god-toggle-on-overwrite ()
