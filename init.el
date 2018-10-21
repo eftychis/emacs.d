@@ -56,10 +56,8 @@
 (require 'racer)
 
 (package-install 'intero)
-
 ;; load files
 (load-file (expand-file-name "extra-buffer-functions.el" user-emacs-directory))
-
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
 ;(setq company-tooltip-align-annotations t)
@@ -74,6 +72,7 @@
 (add-hook 'c-mode-hook (lambda ()
 			 (setq comment-style 'extra-line)))
 (add-hook 'c-mode-hook 'my:ac-c-init)
+(add-hook 'c-mode-hook 'google-set-c-style)
 ;;we want a saner identation style for C
 (defun c-lineup-arglist-tabs-only (ignored)
       "Line up argument lists by tabs, not spaces"
@@ -394,8 +393,7 @@
 ;;(require 'ace-jump-mode)
 (define-key global-map (kbd "M-j") 'ace-jump-mode)
 (put 'upcase-region 'disabled nil)
-
-
+(window-numbering-mode t)
 ;; ORG mode configuration
 (require 'org)
 (define-key global-map "\C-cl" 'org-store-link)
