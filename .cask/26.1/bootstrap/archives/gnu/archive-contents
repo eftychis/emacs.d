@@ -121,7 +121,11 @@
 	  ((:url . "https://github.com/Malabarba/beacon")
 	   (:keywords "convenience"))])
  (brief .
+<<<<<<< HEAD
 	[(5 84)
+=======
+	[(5 85)
+>>>>>>> Add 26.1 packages
 	 nil "Brief Editor Emulator" single
 	 ((:url . "http://elpa.gnu.org/packages/brief.html")
 	  (:keywords "brief" "emulations" "crisp"))])
@@ -307,7 +311,11 @@
 	    ((:url . "https://github.com/mgalgs/diffview-mode")
 	     (:keywords "convenience" "diff"))])
  (dired-du .
+<<<<<<< HEAD
 	   [(0 5)
+=======
+	   [(0 5 1)
+>>>>>>> Add 26.1 packages
 	    ((emacs
 	      (24 4))
 	     (cl-lib
@@ -384,12 +392,20 @@
 	 ((emacs
 	   (26 1))
 	  (jsonrpc
+<<<<<<< HEAD
 	   (1 0 0)))
+=======
+	   (1 0 6)))
+>>>>>>> Add 26.1 packages
 	 "Client for Language Server Protocol (LSP) servers" tar
 	 ((:keywords "convenience" "languages")
 	  (:url . "https://github.com/joaotavora/eglot"))])
  (el-search .
+<<<<<<< HEAD
 	    [(1 7 6)
+=======
+	    [(1 7 9)
+>>>>>>> Add 26.1 packages
 	     ((emacs
 	       (25))
 	      (stream
@@ -433,15 +449,27 @@
 		  ((:keywords "convenience")
 		   (:url . "https://github.com/ergoemacs/ergoemacs-mode"))])
  (excorporate .
+<<<<<<< HEAD
 	      [(0 7 6)
+=======
+	      [(0 8 1)
+>>>>>>> Add 26.1 packages
 	       ((emacs
 		 (24 1))
 		(fsm
 		 (0 2))
 		(soap-client
+<<<<<<< HEAD
 		 (3 1 1))
 		(url-http-ntlm
 		 (2 0 3)))
+=======
+		 (3 1 4))
+		(url-http-ntlm
+		 (2 0 3))
+		(nadvice
+		 (0 3)))
+>>>>>>> Add 26.1 packages
 	       "Exchange integration" tar
 	       ((:keywords "calendar")
 		(:url . "http://elpa.gnu.org/packages/excorporate.html"))])
@@ -518,7 +546,11 @@
 		 ((:keywords "gnome" "c" "coding style")
 		  (:url . "http://elpa.gnu.org/packages/gnome-c-style.html"))])
  (gnorb .
+<<<<<<< HEAD
 	[(1 5 5)
+=======
+	[(1 5 7)
+>>>>>>> Add 26.1 packages
 	 ((cl-lib
 	   (0 5)))
 	 "Glue code between Gnus, Org, and BBDB" tar
@@ -769,6 +801,14 @@
 	 "Random-access singly-linked lists" single
 	 ((:url . "http://elpa.gnu.org/packages/myers.html")
 	  (:keywords "list" "containers"))])
+<<<<<<< HEAD
+=======
+ (nadvice .
+	  [(0 3)
+	   nil "Forward compatibility for Emacs-24.4's nadvice" single
+	   ((:url . "http://elpa.gnu.org/packages/nadvice.html")
+	    (:keywords))])
+>>>>>>> Add 26.1 packages
  (nameless .
 	   [(1 0 2)
 	    ((emacs
@@ -781,7 +821,13 @@
 	 ((emacs
 	   (24 1))
 	  (cl-lib
+<<<<<<< HEAD
 	   (0 5)))
+=======
+	   (0 5))
+	  (nadvice
+	   (0 3)))
+>>>>>>> Add 26.1 packages
 	 "Namespaces for emacs-lisp. Avoid name clobbering without hiding symbols." tar
 	 ((:keywords "extensions" "lisp")
 	  (:url . "https://github.com/Malabarba/names"))])
@@ -847,7 +893,11 @@
 	    ((:keywords "convenience" "text" "org")
 	     (:url . "https://savannah.nongnu.org/projects/org-edna-el/"))])
  (orgalist .
+<<<<<<< HEAD
 	   [(1 8)
+=======
+	   [(1 9)
+>>>>>>> Add 26.1 packages
 	    ((emacs
 	      (24 4)))
 	    "Manage Org-like lists in non-Org buffers" single
@@ -859,7 +909,11 @@
        ((:url . "http://elpa.gnu.org/packages/osc.html")
 	(:keywords "comm" "processes" "multimedia"))])
  (other-frame-window .
+<<<<<<< HEAD
 		     [(1 0 5)
+=======
+		     [(1 0 6)
+>>>>>>> Add 26.1 packages
 		      ((emacs
 			(24 4)))
 		      "Minor mode to enable global prefix keys for other frame/window buffer placement" single
@@ -990,7 +1044,13 @@
 	  (cl-lib
 	   (0 5))
 	  (cl-generic
+<<<<<<< HEAD
 	   (0 3)))
+=======
+	   (0 3))
+	  (cl-print
+	   (1 0)))
+>>>>>>> Add 26.1 packages
 	 "A collaborative editing framework for Emacs" tar
 	 ((:keywords "rudel" "collaboration")
 	  (:url . "http://rudel.sourceforge.net/"))])

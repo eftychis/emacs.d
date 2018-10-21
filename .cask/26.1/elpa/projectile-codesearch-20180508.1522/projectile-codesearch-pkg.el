@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "projectile-codesearch" "20180508.1522" "Integration of codesearch into projectile" '((codesearch "20171122.431") (projectile "20150405.126")) :commit "f6eb96f034a925444412cfa03e45e0ccbbafe3f2" :keywords '("tools" "development" "search") :authors '(("Austin Bingham" . "austin.bingham@gmail.com")) :maintainer '("Austin Bingham" . "austin.bingham@gmail.com") :url "https://github.com/abingham/emacs-codesearch")
