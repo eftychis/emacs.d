@@ -423,15 +423,32 @@
 (global-set-key (kbd "M-x") 'smex) ; cursorag to other pane
 (global-set-key (kbd "M-g") 'goto-line)        ;
 ;;(global-set-key (kbd "M-M-c") 'calendar)        
-(global-set-key (kbd "M-RET g g") 'god-mode)        ;
-(global-set-key (kbd "C-_") 'god-mode)        ;
+(global-set-key (kbd "M-RET g g") 'god-mode)
+(global-set-key (kbd "C-_") 'god-mode-all)
+(define-key god-local-mode-map (kbd ".") 'repeat)
+;; duplicate-down
+(global-set-key (kbd "M-RET d") 'md/duplicate-down)
+
+;; search ag
+(global-set-key (kbd "C-(") (lambda ()
+		(interactive)
+		(ag)))
+
+;; writeroom-mode-global
+(global-set-key (kbd "M-RET r") 'writeroom-mode)
+;; mc-edit lines
+(global-set-key (kbd "M-RET e") 'mc/edit-lines)
+;; (define-key global-key-binding (kbd "<C-'") 'mc-edit-lines)
+;; (global-set-key (kbd "C-'") 'mc/mark-next-sexps)
+;; (global-set-key (kbd "C-\"") 'mc/mark-next-sexps)
+;; ', "
 ;; set winner mode
 (global-set-key (kbd "C-c <right>") 'winner-redo)
 (global-set-key (kbd "C-c <left>") 'winner-undo) 
 ;; You know, like Readline.
 (global-set-key (kbd "M-RET b") 'backward-kill-word)
-(global-set-key (kbd "M-RET m p") 'smartparens-mode)
-(global-set-key (kbd "M-RET r") 'global-writeroom-mode)
+;;(global-set-key (kbd "M-RET m p") 'smartparens-mode)
+;;(global-set-key (kbd "M-RET r") 'global-writeroom-mode)
 
 ;; Align your code in a pretty way.
 (global-set-key (kbd "C-x \\") 'align-regexp)
