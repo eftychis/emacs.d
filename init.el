@@ -419,6 +419,67 @@
 (setq god-exempt-major-modes nil)
 (setq god-exempt-predicates nil)
 
+(setq default-frame-alist '((cursor-color . "white")))
+
+;; (require 'cursor-chg)  ; Load the library
+;; (toggle-cursor-type-when-idle 1) ; Turn on cursor change when Emacs is idle
+;; (change-cursor-mode 1) ; Turn on change for overwrite, read-only, and input mode
+(require 'smart-cursor-color)
+(setq smart-cursor-color-mode t)
+
+;; (defun my-update-cursor ()
+;;       (setq cursor-type (if (or god-global-mode buffer-read-only)
+;; 			    'box
+;; 			  'bar)))
+
+;; (setq default-frame-alist '((cursor-color . "white")))
+;; (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+;; (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;; (defun c/god-mode-update-cursor ()
+;;   (let ((limited-colors-p (> 257 (length (defined-colors)))))
+;;     (cond (god-mode (progn
+;; 			    (set-face-background 'mode-line (if limited-colors-p "white" "#e9e2cb"))
+;; 			    (set-face-background 'mode-line-inactive (if limited-colors-p "white" "#e9e2cb"))))
+;; 	  (t (progn
+;; 	       (set-face-background 'mode-line (if limited-colors-p "black" "#0a2832"))
+;; 	       (set-face-background 'mode-line-inactive (if limited-colors-p "black" "#0a2832")))))))
+;; (add-hook 'god-mode-enabled-hook 'c/god-mode-update-cursor)
+;; ;; god mode update cursor and line background
+(defun hook-update-cursor-orange ()
+	;; (cond ((or (bound-and-true-p god-mode)
+	;; 	   (bound-and-true-p god-global-mode))
+  (set-cursor-color "lime green")
+  (set-face-attribute 'cursor "red")
+  (setq cursor-type 'bar)
+  )
+
+;; (t (set-cursor-color "dark orange"))))
+(defun hook-update-cursor-grey ()
+  (set-cursor-color "dark orange")
+  (setq cursor-type 'hbar)
+  )
+
+(add-hook 'god-mode-enabled-hook 'hook-update-cursor-orange)
+(add-hook 'god-mode-disabled-hook 'hook-update-cursor-grey)
+
+;; (add-hook 'buffer-list-update-hook 'hook-update-cursor)
+
+;; (defun my-update-cursor ()
+;;       (setq cursor-type (if (or god-local-mode buffer-read-only)
+;; 			    'box
+;; 			  'bar)))
+;; (add-hook 'god-mode-enabled-hook 'my-update-cursor)
+;; (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;; (defun set-modeline-color-grey ()
+;;       (set-face-background 'mode-line "#b5b5b5")
+;;       (set-face-background 'mode-line-inactive "#b5b5b5"))
+;; (defun set-modeline-color-champagne ()
+;;   (set-face-background 'mode-line "#f6eabe")
+;;   (set-face-background 'mode-line-inactive "#f6eabe"))
+;; (add-hook 'god-mode-enabled-hook 'set-modeline-color-champagne)
+;; (add-hook 'god-mode-disabled-hook 'set-modeline-color-grey)
 
 ;; disable god mode on overwrite
 (defun god-toggle-on-overwrite ()
