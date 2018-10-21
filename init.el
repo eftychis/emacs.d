@@ -415,6 +415,16 @@
 (setq TeX-auto-save t)
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
+
+;; disable god mode on overwrite
+(defun god-toggle-on-overwrite ()
+      "Toggle god-mode on overwrite-mode."
+      (if (bound-and-true-p overwrite-mode)
+	  (god-local-mode-pause)
+	(god-local-mode-resume)))
+
+(add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
+
 ;; my shortcuts
 (global-set-key (kbd "M-[") 'delete-other-windows) ; expand current pane
 (global-set-key (kbd "M-]") 'split-window-horizontally) ; split pane top/bottom
