@@ -1,4 +1,5 @@
 (source "gnu" "http://elpa.gnu.org/packages/")
+(source "marmalade" "http://marmalade-repo.org/packages/")
 (source "melpa" "http://melpa.org/packages/")
 
 (depends-on "ac-c-headers")
