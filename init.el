@@ -59,6 +59,7 @@
 ;; load files
 (load-file (expand-file-name "extra-buffer-functions.el" user-emacs-directory))
 (load-file (expand-file-name "tla-mode.el" user-emacs-directory))
+(load-file (expand-file-name "cheat-sh.el" user-emacs-directory))
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
 ;(setq company-tooltip-align-annotations t)
