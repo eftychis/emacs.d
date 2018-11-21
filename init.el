@@ -17,7 +17,7 @@
 (ac-config-default)
 (require 'go-autocomplete)
 (require 'auto-complete)
-(global-auto-complete-mode t)
+(global-auto-complete-mode nil)
 (package-initialize)
 
 (require 'auto-complete-config)
@@ -60,6 +60,7 @@
 (load-file (expand-file-name "extra-buffer-functions.el" user-emacs-directory))
 (load-file (expand-file-name "tla-mode.el" user-emacs-directory))
 (load-file (expand-file-name "cheat-sh.el" user-emacs-directory))
+(load-file (expand-file-name "britanize.el" user-emacs-directory))
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
 ;(setq company-tooltip-align-annotations t)
@@ -128,6 +129,7 @@
 (add-hook 'haskell-mode-hook 'my:ac-semantic)
 (require 'hindent)
 (add-hook 'haskell-mode-hook #'hindent-mode)
+(add-hook 'haskell-mode-hook #'my-haskell-brittany-mode-hook)
 
 ;;(define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
 (setq haskell-tags-on-save t)
@@ -342,7 +344,7 @@
       ("~/WriteUps/prs.org" "~/WriteUps/todo.org" "~/WriteUps/personal/mytodos.org" "~/WriteUps/personal/today.org")))))
  '(package-selected-packages
    (quote
-    (ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -496,14 +498,23 @@
 ;;(global-set-key (kbd "M-M-c") 'calendar)        
 (global-set-key (kbd "M-RET g g") 'god-mode)
 (global-set-key (kbd "C-_") 'god-mode-all)
+;;(global-set-key [(shift right)] 'god-mode-all)
 (define-key god-local-mode-map (kbd ".") 'repeat)
 ;; duplicate-down
 (global-set-key (kbd "M-RET d") 'md/duplicate-down)
 
 ;; search ag
 (global-set-key (kbd "C-(") (lambda ()
+			      (interactive)
+			      (let (term dest)
+				 (setq term (read-string (format "word (%s): " (thing-at-point 'word))
+					     nil nil (thing-at-point 'word)))
+				 (setq dest (read-string (format "word (%s): " (thing-at-point 'word))
+					     nil nil (thing-at-point 'word)))
+		(ag term dest))))
+(global-set-key (kbd "C-)") (lambda ()
 		(interactive)
-		(ag)))
+		(projectile-ag)))
 
 ;; writeroom-mode-global
 (global-set-key (kbd "M-RET r") 'writeroom-mode)
