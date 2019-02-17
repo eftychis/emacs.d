@@ -1,3 +1,4 @@
+
 (put 'set-goal-column 'disabled nil)
 (setq package-enable-at-startup nil) (package-initialize)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -61,6 +62,10 @@
 (load-file (expand-file-name "tla-mode.el" user-emacs-directory))
 (load-file (expand-file-name "cheat-sh.el" user-emacs-directory))
 (load-file (expand-file-name "britanize.el" user-emacs-directory))
+(load-file (expand-file-name "latex-utils.el" user-emacs-directory))
+;;
+(add-to-list 'load-path  (expand-file-name "hsearch-mode.el" user-emacs-directory))
+
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
 ;(setq company-tooltip-align-annotations t)
@@ -129,10 +134,12 @@
 (add-hook 'haskell-mode-hook 'my:ac-semantic)
 (require 'hindent)
 (add-hook 'haskell-mode-hook #'hindent-mode)
-(add-hook 'haskell-mode-hook #'my-haskell-brittany-mode-hook)
+;;
+;;(add-hook 'haskell-mode-hook #'my-haskell-brittany-mode-hook)
 
 ;;(define-key haskell-mode-map (kbd "M-.") 'haskell-mode-jump-to-def)
 (setq haskell-tags-on-save t)
+(setq tags-revert-without-query t)
 (require 'speedbar)
 (speedbar-add-supported-extension ".hs")
 ;; hooks be here
@@ -220,7 +227,7 @@
 	 ;; can't use $HOME in path for \addbibresource but that "~"
 	 ;; works.
 	 (setq reftex-bibliography-commands '("bibliography" "nobibliography" "addbibresource"))
-					;     (setq reftex-default-bibliography '("UNCOMMENT LINE AND INSERT PATH TO YOUR BIBLIOGRAPHY HERE")); So that RefTeX in Org-mode knows bibliography
+	 (setq reftex-default-bibliography '("bib.bib" "../bib.bib")); So that RefTeX in Org-mode knows bibliography
 	 (setcdr (assoc 'caption reftex-default-context-regexps) "\\\\\\(rot\\|sub\\)?caption\\*?[[{]"); Recognize \subcaptions, e.g. reftex-citation
 	 (setq reftex-cite-format; Get ReTeX with biblatex, see http://tex.stackexchange.com/questions/31966/setting-up-reftex-with-biblatex-citation-commands/31992#31992
 	       '((?t . "\\textcite[]{%l}")
@@ -323,6 +330,13 @@
 (add-hook 'TeX-mode-hook
 	  (lambda () (set (make-variable-buffer-local 'TeX-electric-math)
 			  (cons "\\(" "\\)"))))
+
+(setq TeX-parse-self t)
+
+
+;; Inline pretty symbols
+(require 'latex-pretty-symbols)
+
 ;; imenu hook for reftex
 (add-hook 'reftex-load-hook 'imenu-add-menubar-index)
 (add-hook 'reftex-mode-hook 'imenu-add-menubar-index)
@@ -344,7 +358,7 @@
       ("~/WriteUps/prs.org" "~/WriteUps/todo.org" "~/WriteUps/personal/mytodos.org" "~/WriteUps/personal/today.org")))))
  '(package-selected-packages
    (quote
-    (matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony rtags benchmark-init cff guru-mode package-build shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f find-file-in-project flycheck gh ghc git-commit gntp go-eldoc go-mode go-rename haskell-mode header2 helm-bibtex helm-core helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple hydra key-chord let-alist lib-requires link log4e logito magit-popup markdown-mode marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip pyvenv request seq swiper visual-fill-column with-editor yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio helm magit projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-ref org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump mc-extras magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme ivy isearch-symbol-at-point isearch+ intero iedit idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode hackernews gotest google-translate google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flyspell-correct flycheck-perl6 flycheck-haskell flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen elpy eldoro ecb dictionary cpputils-cmake counsel company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -667,3 +681,4 @@ version 2016-06-15"
 	 )
 	)
 (put 'narrow-to-region 'disabled nil)
+(put 'magit-diff-edit-hunk-commit 'disabled nil)
