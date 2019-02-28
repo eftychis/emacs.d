@@ -71,6 +71,8 @@
 ;(setq company-tooltip-align-annotations t)
 ;; functions - TODO : move them somewhere seperately.
 (defun my:ac-c-init()
+;;
+"Setup autocomplete c mode."
   (require 'auto-complete-c-headers)
   (add-to-list 'ac-sources 'ac-source-c-headers)
   ;; running gcc -xc++ -E -v -
@@ -358,7 +360,7 @@
       ("~/WriteUps/prs.org" "~/WriteUps/todo.org" "~/WriteUps/personal/mytodos.org" "~/WriteUps/personal/today.org")))))
  '(package-selected-packages
    (quote
-    (flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (direnv racer zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -403,7 +405,8 @@
 ;;(load-theme 'monokai-theme t)
 ;;(prelude-require-package 'ace-jump-mode)
 ;;(require 'ace-jump-mode)
-(define-key global-map (kbd "M-j") 'ace-jump-mode)
+(define-key global-map (kbd "M-j") 'avy-goto-word-or-subword-1)
+
 (put 'upcase-region 'disabled nil)
 (window-numbering-mode t)
 ;; ORG mode configuration
@@ -415,6 +418,11 @@
 (setq org-agenda-files (list "~/WriteUps/todo.org"
 			     "~/WriteUps/personal/mytodos.org"
 			     "~/WriteUps/personal/today.org"))
+;; Set org bullet hook.
+(add-hook 'org-mode 'org-bullets-mode-hook)
+
+
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -566,6 +574,8 @@
 
 ;; Magit rules!
 (global-set-key (kbd "M-RET g s") 'magit-status)
+(global-set-key (kbd "M-RET g m p") 'magit-dispatch-popup)
+(global-set-key (kbd "M-RET g m s") 'magit-stage)
 ;; swap windows
 (global-set-key (kbd "C-c s") 'swap-windows)
 ;; duplicate the current line or region
