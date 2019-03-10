@@ -514,6 +514,12 @@
 
 (add-hook 'overwrite-mode-hook 'god-toggle-on-overwrite)
 
+
+(require 'god-mode-isearch)
+(define-key isearch-mode-map (kbd "<Meta>") 'god-mode-isearch-activate)
+(define-key god-mode-isearch-map (kbd "<Meta>") 'god-mode-isearch-disable)
+
+
 ;; my shortcuts
 (global-set-key (kbd "M-[") 'delete-other-windows) ; expand current pane
 (global-set-key (kbd "M-]") 'split-window-horizontally) ; split pane top/bottom
@@ -523,38 +529,21 @@
 (global-set-key (kbd "M-g") 'goto-line)        ;
 ;;(global-set-key (kbd "M-M-c") 'calendar)        
 (global-set-key (kbd "M-RET g g") 'god-mode)
+
 (global-set-key (kbd "C-_") 'god-mode-all)
+(global-set-key (kbd "C--") 'god-mode-all)
+;; load our custom short keybinds
+(load-file (expand-file-name "customshortkeys.el" user-emacs-directory))
+
+;;(global-set-key (kbd "M-n") 'god-mode-all)
+
 ;;(global-set-key [(shift right)] 'god-mode-all)
 (define-key god-local-mode-map (kbd ".") 'repeat)
-;; duplicate-down
-(global-set-key (kbd "M-RET d") 'md/duplicate-down)
-
-;; search ag
-(global-set-key (kbd "C-(") (lambda ()
-			      (interactive)
-			      (let (term dest)
-				 (setq term (read-string (format "word (%s): " (thing-at-point 'word))
-					     nil nil (thing-at-point 'word)))
-				 (setq dest (read-string (format "word (%s): " (thing-at-point 'word))
-					     nil nil (thing-at-point 'word)))
-		(ag term dest))))
-(global-set-key (kbd "C-)") (lambda ()
-		(interactive)
-		(projectile-ag)))
-
-;; writeroom-mode-global
-(global-set-key (kbd "M-RET r") 'writeroom-mode)
-;; mc-edit lines
-(global-set-key (kbd "M-RET e") 'mc/edit-lines)
-;; (define-key global-key-binding (kbd "<C-'") 'mc-edit-lines)
-;; (global-set-key (kbd "C-'") 'mc/mark-next-sexps)
-;; (global-set-key (kbd "C-\"") 'mc/mark-next-sexps)
 ;; ', "
 ;; set winner mode
 (global-set-key (kbd "C-c <right>") 'winner-redo)
 (global-set-key (kbd "C-c <left>") 'winner-undo) 
 ;; You know, like Readline.
-(global-set-key (kbd "M-RET b") 'backward-kill-word)
 ;;(global-set-key (kbd "M-RET m p") 'smartparens-mode)
 ;;(global-set-key (kbd "M-RET r") 'global-writeroom-mode)
 
@@ -562,8 +551,6 @@
 (global-set-key (kbd "C-x \\") 'align-regexp)
 ;; Jump to a definition in the current file. (This is awesome.)
 (global-set-key (kbd "C-x C-i") 'ido-imenu)
-;; Follow File (for imports, includes, input etc).
-(global-set-key (kbd "M-RET f") 'find-file-at-point)
 ;; File finding
 (global-set-key (kbd "C-x M-f") 'ido-find-file-other-window)
 (global-set-key (kbd "C-x C-M-f") 'find-file-in-project)
@@ -574,32 +561,18 @@
 (global-set-key (kbd "C-h a") 'apropos)
 
 ;; Should be able to eval-and-replace anywhere.
-(global-set-key (kbd "C-c e") 'eval-and-replace)
+;; (global-set-key (kbd "C-c e") 'eval-and-replace)
 
 ;; Magit rules!
 (global-set-key (kbd "M-RET g s") 'magit-status)
 (global-set-key (kbd "M-RET g m p") 'magit-dispatch-popup)
 (global-set-key (kbd "M-RET g m s") 'magit-stage)
-;; swap windows
-(global-set-key (kbd "C-c s") 'swap-windows)
-;; duplicate the current line or region
-(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
-;; search with google
-(global-set-key (kbd "C-c g") 'google-this)
-;; parenthesis related commands
-;;(global-set-key (kbd "") `paren-face) 
-
 ;;
 ;; transpose rules
 (define-key input-decode-map "\e\eOA" [(meta up)])
 (define-key input-decode-map "\e\eOB" [(meta down)])
 (global-set-key [(meta up)] 'transpose-line-up)
 (global-set-key [(meta down)] 'transpose-line-down)
-
-(global-set-key (kbd "M-RET >") 'mc/mark-next-like-this)
-(global-set-key (kbd "M-RET <") 'mc/mark-previous-like-this)
-(global-set-key (kbd "M-RET C->") 'mc/mark-all-like-this)
-(global-set-key (kbd "M-RET '") 'mc/edit-lines)
 
 ;; Borrowed from xah
 ;; TODO: move them into a separate file if they work fine
