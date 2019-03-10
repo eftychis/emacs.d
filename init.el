@@ -65,6 +65,9 @@
 (load-file (expand-file-name "latex-utils.el" user-emacs-directory))
 ;;
 (add-to-list 'load-path  (expand-file-name "hsearch-mode.el" user-emacs-directory))
+;; browse in emacs
+(add-to-list 'load-path  (expand-file-name "eww-custom.el" user-emacs-directory))
+;; (add-to-list 'load-path  (expand-file-name "xwidget-custom.el" user-emacs-directory))
 
 ;; completion popup is a bit slow: tuning the delay down a notch
 (setq company-idle-delay 0.3)
