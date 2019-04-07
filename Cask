@@ -194,6 +194,7 @@
 (depends-on "nix-mode")
 (depends-on "nix-sandbox")
 (depends-on "nix-update")
+(depends-on "nixos-options")
 (depends-on "noflet")
 (depends-on "ob-rust")
 (depends-on "opener")
