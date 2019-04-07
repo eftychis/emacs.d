@@ -51,6 +51,9 @@
 ;;;;;;;;;;;;
 ;; swap windows
 (global-set-key (kbd "C-c s") 'swap-buffers)
+;; fast narrrow
+(global-set-key (kbd "C-c n") 'narrow-to-region)
+
 ;; duplicate the current line or region
 (global-set-key (kbd "C-c d") 'md/duplicate-down)
 ;;(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
