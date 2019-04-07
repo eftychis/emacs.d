@@ -634,8 +634,10 @@ version 2016-06-15"
       (progn (xah-forward-block n)))))
 
 
-(global-set-key (kbd "<PageUp>") 'xah-beginning-of-line-or-block) ; page up key
-(global-set-key (kbd "<PageDown>") 'xah-end-of-line-or-block) ; page down key
+;;(global-set-key (kbd "<C-c left>") 'xah-beginning-of-line-or-block) ; page up key
+;;(global-set-key (kbd "<C-c right>") 'xah-end-of-line-or-block) ; page down key
+(global-set-key (kbd "<C-c m p>") 'xah-forward-block) ; page down key
+(global-set-key (kbd "<C-c m n>") 'xah-backward-block) ; page down key
 
 ;; (global-set-key (kbd "<home>") 'xah-backward-left-bracket)
 ;; (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
@@ -669,3 +671,6 @@ version 2016-06-15"
 	)
 (put 'narrow-to-region 'disabled nil)
 (put 'magit-diff-edit-hunk-commit 'disabled nil)
+
+;; save last session
+(desktop-save-mode t)
