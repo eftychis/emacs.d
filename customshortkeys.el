@@ -81,7 +81,9 @@
 
 ;; Max time delay between two presses of the same key to be considered a key chord.
 ;; Should normally be a little longer than `key-chord-two-keys-delay'.
-(setq key-chord-one-key-delay 0.2) ; default 0.2
+(setq key-chord-one-key-delay 0.3)
 ;;
 ;;(global-set-key (kbd "C-@") 'er/expand-region)
 (key-chord-define-global "ff" 'er/expand-region)
+(key-chord-define-global "dd" 'md-duplicate-down)
+(key-chord-define-global "ss" 'fit-window-to-buffer)
