@@ -363,6 +363,7 @@
     ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9" org-agenda-files
      (quote
       ("~/WriteUps/prs.org" "~/WriteUps/todo.org" "~/WriteUps/personal/mytodos.org" "~/WriteUps/personal/today.org")))))
+ '(electric-indent-mode nil)
  '(org-agenda-files (quote ("~/TODO/Friday" "~/WriteUps/todo.org")))
  '(org-modules
    (quote
