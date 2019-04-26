@@ -55,10 +55,33 @@
 (global-set-key (kbd "C-c n") 'narrow-to-region)
 
 ;; duplicate the current line or region
-(global-set-key (kbd "C-c d") 'md/duplicate-down)
+(global-set-key (kbd "C-c d") 'md-duplicate-down)
 ;;(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 ;; search with google
 (global-set-key (kbd "C-c g") 'google-this)
 ;; parenthesis related commands
-;;(global-set-key (kbd "") `paren-face) 
+;;(global-set-key (kbd "") `paren-face)
+
+
+;; smartparens-mode keybindings
+(global-set-key (kbd "C-c p k") 'sp-kill-sexp)
+(global-set-key (kbd "C-c p u") 'sp-unwrap-sexp)
+(global-set-key (kbd "C-c p r") 'sp-raise-sexp)
+(global-set-key (kbd "C-c p n") 'sp-next-sexp)
+(global-set-key (kbd "C-c p p") 'sp-previous-sexp)
+(global-set-key (kbd "C-c p d") 'sp-down-sexp)
+
+
+(require 'key-chord)
+(key-chord-mode t)
+;; from: https://www.emacswiki.org/emacs/KeyChord
+;; Max time delay between two key presses to be considered a key chord
+(setq key-chord-two-keys-delay 0.1) ; default 0.1
+
+;; Max time delay between two presses of the same key to be considered a key chord.
+;; Should normally be a little longer than `key-chord-two-keys-delay'.
+(setq key-chord-one-key-delay 0.2) ; default 0.2
+;;
+;;(global-set-key (kbd "C-@") 'er/expand-region)
+(key-chord-define-global "ff" 'er/expand-region)
