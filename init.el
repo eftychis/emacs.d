@@ -645,7 +645,7 @@ version 2016-06-15"
 ;; (global-set-key (kbd "<home>") 'xah-backward-left-bracket)
 ;; (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
 
-
+(pending-delete-mode t)
 
 ;;(global-set-key (kbd " '") 'mc/edit-lines)
 
