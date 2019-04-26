@@ -677,3 +677,4 @@ version 2016-06-15"
 
 ;; save last session
 (desktop-save-mode t)
+(setq desktop-dirname "~/.emacs.d/desktop/")
