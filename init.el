@@ -124,7 +124,9 @@
 			     (add-to-list 'ac-sources 'ac-source-math-unicode)
 			     (add-to-list 'ac-sources 'ac-source-math-latex)
 			     ))
-
+;; symbols
+(require 'magic-latex-buffer)
+(add-hook 'LaTex-mode-hook 'magic-latex-buffer)
 
 (defun my:ac-semantic()
   (add-to-list 'ac-sources 'ac-source-semantic)
