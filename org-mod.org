@@ -1,0 +1,118 @@
+# -*- mode: org; -*-
+* Configuration
+#+begin_src emacs-lisp
+   (require 'org-agenda)
+   (setq org-default-notes-file '("~/TODO/.notes.org"))
+
+#+end_src
+
+#+RESULTS:
+| ~/TODO/.notes.org |
+
+* Capture
+#+begin_src emacs-lisp
+  (require 'org-capture)
+;;  (require 'org-agenda)
+  (message "test")
+ ;; Define the custum capture templates
+  (setq org-capture-templates
+	 '(("t" "todo" entry (file org-default-notes-file)
+	    "* TODO %?\n%u\n%a\n" :clock-in t :clock-resume t)
+	   ("m" "Meeting" entry (file org-default-notes-file)
+	    "* MEETING with %? :MEETING:\n%t" :clock-in t :clock-resume t)
+	   ;; ("d" "Diary" entry (file+datetree "~/org/diary.org")
+	   ;;  "* %?\n%U\n" :clock-in t :clock-resume t)
+	   ("i" "Idea" entry (file org-default-notes-file)
+	    "* %? :IDEA: \n%t" :clock-in t :clock-resume t)
+	   ("n" "Next Task" entry (file+headline org-default-notes-file "Tasks")
+	    "** NEXT %? \nDEADLINE: %t") 
+	   ("n" "Read" entry (file+headline org-default-notes-file "Tasks")
+	    "** READ %? \nDEADLINE: %t")
+	   )
+  )
+#+end_src
+
+#+RESULTS:
+| t | todo | entry | (file org-default-notes-file) | * TODO %? |
+
+* Priority and Agenda Configuration
+We first setup some basic settings.
+#+begin_src emacs-lisp
+;;(setq org-agenda-start-day "-2d")
+(setq org-agenda-skip-unavailable-files t)
+(setq org-agenda-set-highest-priority ?A)
+(setq org-agenda-set-lowest-priority ?F)
+(setq org-agenda-set-default-priority ?A)
+(setq org-default-priority ?A)
+(setq org-highest-priority ?A)
+(setq org-lowest-priority ?F)
+(setq org-completion-use-ido t)
+(setq org-enforce-todo-dependencies t)
+#+end_src
+
+#+RESULTS:
+: t
+
+
+#+begin_src emacs-lisp
+;; Custom agenda-views
+(setq org-agenda-custom-commands
+  '(
+
+    ;; other custom agenda views
+
+    ("x" "Daily Scheduled Task"
+      ((agenda "" 
+        ((org-agenda-span 2)
+         (org-agenda-entry-types '(:deadline :scheduled))
+            ;; only deadline and scheduled
+         (org-deadline-warning-days 3)
+;;	 (org-agenda-time-grid nil)
+          (org-agenda-sorting-strategy 
+	  (quote 
+	  (priority-down time-down effort-up category-keep);; todo-state-down)
+                          ;;     effort-up category-keep)
+	  )
+	  )
+	  ;time-up category-up tag-up
+	  ))
+            ;; Set your sorting strategy
+         ; other options like (org-agenda-time-grid nil), etc.
+    )
+)
+)
+)
+#+end_src
+
+#+RESULTS:
+| x | Daily Scheduled Task | ((agenda  ((org-agenda-span 1) (org-agenda-entry-types (quote (:deadline :scheduled))) (org-deadline-warning-days 3) (org-agenda-sorting-strategy (quote (priority-down time-down effort-up category-keep)))))) |
+
+#+begin_src emacs-lisp
+(setq org-agenda-custom-commands
+      '(("P" "Printed agenda"
+         ((agenda "" ((org-agenda-span 7)                      ;; overview of appointments
+                      (org-agenda-start-on-weekday nil)         ;; calendar begins today
+                      (org-agenda-repeating-timestamp-show-all t)
+                      (org-agenda-entry-types '(:timestamp :sexp))))
+          (agenda "" ((org-agenda-span 1)                      ; daily agenda
+                      (org-deadline-warning-days 7)            ; 7 day advanced warning for deadlines
+                      (org-agenda-todo-keyword-format "[ ]")
+                      (org-agenda-scheduled-leaders '("" ""))
+                      (org-agenda-prefix-format "%t%s")))
+          (todo "TODO"                                          ;; todos sorted by context
+                ((org-agenda-prefix-format "[ ] %T: ")
+                 (org-agenda-sorting-strategy '(tag-up priority-down))
+                 (org-agenda-todo-keyword-format "")
+                 (org-agenda-overriding-header "\nTasks by Context\n------------------\n"))))
+         ((org-agenda-with-colors nil)
+          (org-agenda-compact-blocks t)
+          (org-agenda-remove-tags t)
+          (ps-number-of-columns 2)
+           (ps-landscape-mode t))
+         ("~/agenda.ps"))
+        ;; other commands go here
+        ))
+#+end_src
+
+#+RESULTS:
+| x | Daily Scheduled Task | ((agenda  ((org-agenda-span 1) (org-agenda-entry-types (quote (:Priority))) (org-deadline-warning-days 3) (org-agenda-sorting-strategy (quote ((agenda priority-down time-up category-up tag-up))))))) |
