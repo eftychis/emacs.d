@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "nixos-options" "20160209.1841" "Interface for browsing and completing NixOS options." '((emacs "24")) :commit "45c8d90748304c90e1503c9fa8db0443f3d4bd89" :keywords '("unix") :authors '(("Diego Berrocal" . "cestdiego@gmail.com") ("Travis B. Hartwell" . "nafai@travishartwell.net")) :maintainer '("Diego Berrocal" . "cestdiego@gmail.com") :url "http://www.github.com/travisbhartwell/nix-emacs/")
