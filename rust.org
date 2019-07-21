@@ -1,0 +1,39 @@
+# -*- mode: org; -*-
+
+We format the source code on file save.
+#+BEGIN_SRC emacs-lisp
+  (setq rust-format-on-save t)
+#+END_SRC
+
+#+RESULTS:
+: t
+
+We configure the rust path.
+#+BEGIN_SRC emacs-lisp
+(setq racer-rust-src-path
+      (concat (string-trim
+               (shell-command-to-string "rustc --print sysroot"))
+              "/lib/rustlib/src/rust/src"))
+#+END_SRC
+
+#+RESULTS:
+: /Users/eftychis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+
+Now setup TAB to autocomplete in rust mode.
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load 'rust-mode
+    '(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))
+
+#+END_SRC
+
+#+RESULTS:
+: company-indent-or-complete-common
+
+We setup flymake mode for rust now.
+#+BEGIN_SRC emacs-lisp
+  (require 'flymake-rust)
+  (add-hook 'rust-mode-hook 'flymake-rust-load)
+#+END_SRC
+
+#+RESULTS:
+| flymake-rust-load | cargo-minor-mode | eldoc-mode | lsp | company-mode | racer-mode |
