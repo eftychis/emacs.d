@@ -1,0 +1,18 @@
+# -*- mode: org; -*-
+* Buffers
+** Indirrect Buffers
+
+#+BEGIN_SRC emacs-lisp
+  (defun narrow-to-region-with-indirrect-buffer (start end)
+    "Edit region to indirect buffer"
+    (interactive "r")
+    (deactivate-mark)
+    (let ((buf (clone-indirect-buffer-other-window nil nil)))
+	      (with-current-buffer buf 
+	      (narrow-to-region start end))
+	      (switch-to-buffer buf))
+  )
+#+END_SRC
+
+#+RESULTS:
+: narrow-to-region-with-indirrect-buffer
