@@ -1,0 +1,9 @@
+Load adoc as necessary.
+#+BEGIN_SRC emacs-lisp
+   ;; (require 'adoc-mode)
+   (autoload 'adoc-mode "adoc-mode" nil t)
+  ;(adoc-mode t)
+#+END_SRC
+
+#+RESULTS:
+: t
