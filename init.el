@@ -19,8 +19,9 @@
 (ac-config-default)
 (require 'go-autocomplete)
 (require 'auto-complete)
-(global-auto-complete-mode nil)
+(global-auto-complete-mode t)
 (package-initialize)
+(auto-complete-mode t)
 
 (require 'auto-complete-config)
 (ac-config-default)
@@ -180,7 +181,12 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-to-list 'completion-ignored-extensions ".hi")
 ;(speedbar-add-supported-extension ".hs")
-(add-hook 'rust-mode-hook 'racer-mode)
+(add-hook 'rust-mode-hook #'racer-mode)
+(add-hook 'rust-mode-hook #'eldoc-mode)
+(add-hook 'rust-mode-hook #'company-mode)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
 
 ;(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (defun my-go-mode-hook ()
@@ -363,6 +369,7 @@
     ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9")))
  '(direnv-mode t nil (direnv))
  '(electric-indent-mode nil)
+ '(latex-preview-pane-multifile-mode (quote off))
  '(org-agenda-files
    (quote
     ("~/.emacs.d/org-mod.org" "/Users/eftychis/TODO/2Read.org" "/Users/eftychis/TODO/Saturday.org" "/Users/eftychis/TODO/_Problems.org" "~/TODO/Friday")))
@@ -371,7 +378,7 @@
     (org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m org-annotate-file org-learn org-toc)))
  '(package-selected-packages
    (quote
-    (toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv racer zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (ac-rtags flymake-rust crux adoc-mode plantuml-mode magithub company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui lsp-mode ac-racer company-racer helm-rg shm helm-dash tldr emamux projectile-ripgrep rg helm-projectile helm-org-rifle ob-ipython ob-rust toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv racer zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -430,10 +437,6 @@
 ;; (setq org-agenda-files (list "~/WriteUps/todo.org"
 ;; 			     "~/WriteUps/personal/mytodos.org"
 ;; 			     "~/WriteUps/personal/today.org"))
-;; Set org bullet hook.
-(add-hook 'org-mode 'org-bullets-mode-hook)
-
-
 
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -688,7 +691,11 @@ version 2016-06-15"
 (require 'org)
 (require 'ob-tangle)
 (org-babel-load-file (expand-file-name "org-mod.org" user-emacs-directory))
-
+(org-babel-load-file (expand-file-name "custom-functionality.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "lsp.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "rust.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "gui.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "misc-modes.org" user-emacs-directory))
 
 ;; save last session
 (desktop-save-mode t)
