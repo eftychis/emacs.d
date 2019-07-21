@@ -1,0 +1,8 @@
+# -*- mode: org; -*-
+* 
+#+BEGIN_SRC emacs-lisp
+(when (fboundp 'tool-bar-mode) (tool-bar-mode 0))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode 0))
+#+END_SRC
+
+#+RESULTS:

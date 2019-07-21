@@ -1,0 +1,6 @@
+# -*- mode: org; -*-
+* 
+#+BEGIN_SRC emacs-lisp
+  (require 'lsp-mode)
+  (add-hook 'rust-mode-hook 'lsp)
+#+END_SRC
