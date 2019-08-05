@@ -1,0 +1,79 @@
+;; -*- mode: emacs-lisp; coding: emacs-mule; -*-
+;; --------------------------------------------------------------------------
+;; Desktop File for Emacs
+;; --------------------------------------------------------------------------
+;; Created Fri Aug  2 01:46:23 2019
+;; Desktop file format version 208
+;; Emacs version 26.1
+
+;; Global section:
+(setq desktop-saved-frameset [frameset 1 (23875 63583 888900 0) (desktop . "208") "eftychis@Eftychioss-MBP" nil nil ((((minibuffer . t) (tty-type . "screen-256color") (tty . "/dev/tty") (display-type . color) (background-mode . dark) (foreground-color . "#F5F5F5") (background-color . "#1B1E1C") (tool-bar-lines . 0) (font . "tty") (height . 56) (width . 238) (modeline . t) (unsplittable) (menu-bar-lines . 1) (cursor-color . "#F5F5F5") (frameset--id . "93D5-E611-5365-7497") (frameset--mini t)) ((min-height . 4) (min-width . 10) (min-height-ignore . 2) (min-width-ignore . 2) (min-height-safe . 1) (min-width-safe . 2) (min-pixel-height . 4) (min-pixel-width . 10) (min-pixel-height-ignore . 2) (min-pixel-width-ignore . 2) (min-pixel-height-safe . 1) (min-pixel-width-safe . 2)) leaf (pixel-width . 238) (pixel-height . 55) (total-width . 238) (total-height . 55) (normal-height . 1.0) (normal-width . 1.0) (buffer "git-rebase-todo" (selected . t) (hscroll . 0) (fringes 0 0 nil) (margins nil) (scroll-bars nil 0 t nil 0 nil) (vscroll . 0) (dedicated) (point . 472) (start . 1))))])
+(setq desktop-missing-file-warning nil)
+(setq tags-file-name nil)
+(setq tags-table-list nil)
+(setq search-ring '("adve"))
+(setq regexp-search-ring nil)
+(setq register-alist nil)
+(setq file-name-history '("~/.emacs.d/desktop/" "/Users/eftychis/.emacs.d/init.el" "/Users/eftychis/Code/dfinity/bugs_logs/.emacs.d/init.el" "~/.emacs.d/desktop/" "~/emacs.d/desktop/" "~/.emacs.d/desktop/" "/Users/eftychis/.emacs.d/desktop/.emacs.desktop" "~/emacs.d/desktop/" "~/.emacs.d/desktop/"))
+
+;; Buffer section -- buffers listed in same order as in buffer list:
+(desktop-create-buffer 208
+  "/Users/eftychis/Code/dfinity/dfinity/.git/rebase-merge/git-rebase-todo"
+  "git-rebase-todo"
+  'git-rebase-mode
+  '(icicle-mode yas-minor-mode company-mode smart-cursor-color-mode with-editor-mode)
+  472
+  '(nil nil)
+  t
+  nil
+  '((buffer-display-time 23875 63183 377847 0) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/eftychis/Code/dfinity/bugs_logs/1"
+  "1"
+  'mhtml-mode
+  '(icicle-mode smartparens-mode yas-minor-mode company-mode smart-cursor-color-mode highlight-indent-guides-mode)
+  1466
+  '(528 nil)
+  nil
+  nil
+  '((buffer-display-time 23875 63180 265547 0) (buffer-file-coding-system . utf-8-unix))
+  '((mark-ring (1171 2136 1466))))
+
+(desktop-create-buffer 208
+  "/Users/eftychis/Code/evcxr/evcxr_repl/Cargo.toml"
+  "Cargo.toml"
+  'conf-toml-mode
+  '(icicle-mode smartparens-mode yas-minor-mode company-mode smart-cursor-color-mode auto-revert-mode)
+  184
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 23875 61017 471960 760000) (buffer-file-coding-system . undecided-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/eftychis/.emacs.d/desktop/.emacs.desktop"
+  ".emacs.desktop"
+  'emacs-lisp-mode
+  '(eldoc-mode auto-complete-mode icicle-mode smartparens-mode yas-minor-mode company-mode smart-cursor-color-mode highlight-indent-guides-mode)
+  39720
+  '(29039 nil)
+  nil
+  nil
+  '((buffer-display-time 23875 60733 156225 723000) (buffer-file-coding-system . emacs-mule-unix))
+  '((mark-ring nil)))
+
+(desktop-create-buffer 208
+  "/Users/eftychis/.emacs.d/init.el"
+  "init.el"
+  'emacs-lisp-mode
+  '(eldoc-mode auto-complete-mode icicle-mode smartparens-mode yas-minor-mode company-mode smart-cursor-color-mode highlight-indent-guides-mode auto-revert-mode)
+  1
+  '(nil nil)
+  nil
+  nil
+  '((buffer-display-time 23875 61619 656552 275000) (buffer-file-coding-system . prefer-utf-8-unix))
+  '((mark-ring nil)))
+
