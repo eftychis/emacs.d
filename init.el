@@ -18,21 +18,19 @@
 (exec-path-from-shell-initialize)
 
 (require 'auto-complete-config)
-(ac-config-default)
+
 (require 'go-autocomplete)
 (require 'auto-complete)
 (global-auto-complete-mode t)
 (package-initialize)
 (auto-complete-mode t)
 
-(require 'auto-complete-config)
-(ac-config-default)
-
 ;; Setup Icicles
 (require 'icicles)
 (icy-mode t)
 (require 'god-mode)
 (require 'smartparens)
+(require 'smartparens-config)
 (smartparens-global-mode t)
 
 (require 'yasnippet)
@@ -119,6 +117,27 @@
 	    ))
 
 
+
+
+
+;;;
+;; auto-complete setup, sequence is important
+(add-to-list 'ac-modes 'latex-mode) ; beware of using 'LaTeX-mode instead
+(add-to-list 'ac-modes 'LaTeX-mode) ; beware of using 'LaTeX-mode instead
+(require 'ac-math) ; package should be installed first
+(defun my-ac-latex-mode () ; add ac-sources for latex
+   (setq ac-sources
+         (append '(ac-source-math-unicode
+           ac-source-math-latex
+           ac-source-latex-commands)
+                 ac-sources)))
+(add-hook 'LaTeX-mode-hook 'my-ac-latex-mode)
+(setq ac-math-unicode-in-math-p t)
+(ac-flyspell-workaround) ; fixes a known bug of delay due to flyspell (if it is there)
+(add-to-list 'ac-modes 'org-mode) ; auto-complete for org-mode (optional)
+
+
+
 (add-hook 'LaTeX-mode-hook (lambda ()
 			     (require 'auto-complete-auctex)
 			     (add-to-list 'ac-sources 'ac-source-math-unicode)
@@ -129,6 +148,8 @@
 			     (add-to-list 'ac-sources 'ac-source-math-unicode)
 			     (add-to-list 'ac-sources 'ac-source-math-latex)
 			     ))
+(org-babel-load-file (expand-file-name "tex.org" user-emacs-directory))
+
 ;; symbols
 (require 'magic-latex-buffer)
 (add-hook 'LaTex-mode-hook 'magic-latex-buffer)
@@ -185,16 +206,6 @@
 (add-to-list 'completion-ignored-extensions ".hi")
 ;(speedbar-add-supported-extension ".hs")
 ;(add-hook 'rust-mode-hook #'racer-mode)
-(add-hook 'rust-mode-hook #'eldoc-mode)
-(add-hook 'rust-mode-hook #'company-mode)
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-
-
-
-
- (add-hook 'rust-mode-hook 'eglot-ensure)
 
 ;(load-file "$GOPATH/src/golang.org/x/tools/cmd/oracle/oracle.el")
 (defun my-go-mode-hook ()
@@ -452,7 +463,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
-(ac-config-default)
+
 (ac-flyspell-workaround)
 ;; latex vars
 (setq TeX-auto-save t)
@@ -546,7 +557,7 @@
 (global-set-key (kbd "M-s") 'other-window) ; cursorag to other pane
 (global-set-key (kbd "M-x") 'smex) ; cursorag to other pane
 (global-set-key (kbd "M-g") 'goto-line)        ;
-;;(global-set-key (kbd "M-M-c") 'calendar)        
+;;(global-set-key (kbd "M-M-c") 'calendar)
 (global-set-key (kbd "M-RET g g") 'god-mode)
 
 (global-set-key (kbd "C-_") 'god-mode-all)
@@ -561,7 +572,7 @@
 ;; ', "
 ;; set winner mode
 (global-set-key (kbd "C-c <right>") 'winner-redo)
-(global-set-key (kbd "C-c <left>") 'winner-undo) 
+(global-set-key (kbd "C-c <left>") 'winner-undo)
 ;; You know, like Readline.
 ;;(global-set-key (kbd "M-RET m p") 'smartparens-mode)
 ;;(global-set-key (kbd "M-RET r") 'global-writeroom-mode)
@@ -703,9 +714,17 @@ version 2016-06-15"
 (org-babel-load-file (expand-file-name "lsp.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "gui.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "misc-modes.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "post-save-hooks.org" user-emacs-directory))
 
 ;; save last session
 (desktop-save-mode t)
 (setq desktop-dirname "~/.emacs.d/desktop/")
 
+;; We turn ac config on after every configuration.
+(require 'auto-complete-config) ; should be after add-to-list 'ac-modes and hooks
+(ac-config-default)
+(setq ac-auto-start nil)            ; if t starts ac at startup automatically
+(setq ac-auto-show-menu t)
+(global-auto-complete-mode t)
+;;;
 ;; init ends here
