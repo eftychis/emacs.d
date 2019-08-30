@@ -2,5 +2,6 @@
 * 
 #+BEGIN_SRC emacs-lisp
   (require 'lsp-mode)
-  (add-hook 'rust-mode-hook 'lsp)
+  (add-hook 'rust-mode-hook 'lsp-mode)
+  (add-hook 'rust-mode-hook #'lsp-rust-enable)
 #+END_SRC
