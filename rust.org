@@ -37,3 +37,17 @@ We setup flymake mode for rust now.
 
 #+RESULTS:
 | flymake-rust-load | cargo-minor-mode | eldoc-mode | lsp | company-mode | racer-mode |
+
+
+Add rust related hooks
+#+BEGIN_SRC emacs-lisp
+  (add-hook 'rust-mode-hook #'racer-mode)
+  (add-hook 'rust-mode-hook #'eldoc-mode)
+  (add-hook 'rust-mode-hook #'company-mode)
+  (add-hook 'rust-mode-hook 'cargo-minor-mode)
+  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+  (add-hook 'rust-mode-hook 'eglot-ensure)
+#+END_SRC
+
+#+RESULTS:
+| racer-mode | lsp-rust-enable | lsp-mode | eglot-ensure | cargo-minor-mode | company-mode | eldoc-mode | flymake-rust-load |
