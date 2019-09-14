@@ -471,7 +471,9 @@
 (setq TeX-parse-self t)
 (setq-default TeX-master nil)
 ;; no exempt buffers for god mode
-(setq god-exempt-major-modes nil)
+;;(setq god-exempt-major-modes nil)
+
+(add-to-list 'god-exempt-major-modes 'latex-preview-pane-mode)
 (setq god-exempt-predicates nil)
 
 (setq default-frame-alist '((cursor-color . "white")))
