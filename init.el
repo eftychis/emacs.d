@@ -53,9 +53,10 @@
 (require 'company)
 (global-company-mode t)
 
+(org-babel-load-file (expand-file-name "rust.org" user-emacs-directory))
 (require 'rust-mode)
 (require 'racer)
-(org-babel-load-file (expand-file-name "rust.org" user-emacs-directory))
+
 (require 'direnv)
 
 (package-install 'intero)
