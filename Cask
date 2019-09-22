@@ -56,6 +56,7 @@
 (depends-on "company-lsp")
 (depends-on "company-math")
 (depends-on "company-racer")
+(depends-on "company-tabnine")
 (depends-on "concurrent")
 (depends-on "connection")
 (depends-on "counsel")

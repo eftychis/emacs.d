@@ -1,0 +1,6 @@
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'company-backends #'company-tabnine)
+#+END_SRC
+
+#+RESULTS:
+| company-tabnine | (company-irony company-gtags) |
