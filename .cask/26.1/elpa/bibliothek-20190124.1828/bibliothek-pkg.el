@@ -1,0 +1,2 @@
+;;; -*- no-byte-compile: t -*-
+(define-package "bibliothek" "20190124.1828" "Managing a digital library of PDFs" '((emacs "24.4") (pdf-tools "0.70") (a "0.1.0alpha4")) :commit "ebb2778052aeaf737adebc003957cb48cb01135e" :keywords '("tools") :authors '(("Göktuğ Kayaalp" . "self@gkayaalp.com")) :maintainer '("Göktuğ Kayaalp" . "self@gkayaalp.com") :url "https://dev.gkayaalp.com/elisp/index.html#bibliothek-el")
