@@ -19,15 +19,15 @@ We configure the rust path.
 #+RESULTS:
 : /Users/eftychis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
-Now setup TAB to autocomplete in rust mode.
+Now setup TAB to autocomplete in rust mode. Then setup clippy from cargo also
 #+BEGIN_SRC emacs-lisp
   (eval-after-load 'rust-mode
-    '(define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common))
-
+  '(progn (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+    (define-key cargo-minor-mode-map (kbd "C-c C-c C-y") #'cargo-process-clippy)))
 #+END_SRC
 
 #+RESULTS:
-: company-indent-or-complete-common
+: cargo-process-clippy
 
 We setup flymake mode for rust now.
 #+BEGIN_SRC emacs-lisp
@@ -41,13 +41,25 @@ We setup flymake mode for rust now.
 
 Add rust related hooks
 #+BEGIN_SRC emacs-lisp
+  (require 'rust-mode)
+  (unless (fboundp 'lsp-rust-enable)
+    (defun lsp-rust-enable ()
+      ()))
+  (add-hook 'rust-mode-hook #'cargo-minor-mode)
   (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'rust-mode-hook #'eldoc-mode)
   (add-hook 'rust-mode-hook #'company-mode)
-  (add-hook 'rust-mode-hook 'cargo-minor-mode)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook 'eglot-ensure)
+  (add-hook 'rust-mode-hook #'eglot-ensure)
+  ;;(require 'lsp-clients)
+#+END_SRC
+
+We add a couple of general eglot bindings. This is not Rust specific
+anymore, but as we are showcasing it here it is helpful.
+#+BEGIN_SRC emacs-lisp
+  (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+  (define-key eglot-mode-map (kbd "C-c C-h") 'xref-find-references)
 #+END_SRC
 
 #+RESULTS:
-| lsp-rust-enable | lsp-mode | eglot-ensure | cargo-minor-mode | company-mode | eldoc-mode | racer-mode | flymake-rust-load |
+: xref-find-references
