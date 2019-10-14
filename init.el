@@ -375,6 +375,18 @@
 (add-hook 'reftex-mode-hook 'imenu-add-menubar-index)
 
 
+;; [attempt] sync doc with tex source
+(add-hook 'LaTeX-mode-hook 'TeX-PDF-mode)
+(add-hook 'LaTeX-mode-hook 'TeX-source-correlate-mode)
+(setq TeX-source-correlate-method 'synctex)
+(setq TeX-source-correlate-start-server t)
+
+
+;; enable flyspell in rust mode and tex mode.
+(add-hook 'LaTeX-mode-hook 'flyspell-mode)
+(add-hook 'rust-mode-hook 'flyspell-mode)
+
+
 ;; variables
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -386,7 +398,7 @@
  '(custom-enabled-themes (quote (monokai)))
  '(custom-safe-themes
    (quote
-    ("bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9")))
+    ("a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9")))
  '(direnv-mode t nil (direnv))
  '(electric-indent-mode nil)
  '(latex-preview-pane-multifile-mode (quote off))
@@ -398,7 +410,7 @@
     (org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m org-annotate-file org-learn org-toc)))
  '(package-selected-packages
    (quote
-    (company-tabnine forge github-review lsp-dart eglot ac-rtags flymake-rust crux adoc-mode plantuml-mode magithub company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui lsp-mode ac-racer company-racer helm-rg shm helm-dash tldr emamux projectile-ripgrep rg helm-projectile helm-org-rifle ob-ipython ob-rust toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv racer zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists multiple-cursors noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex smartparens sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+    (lsp-javascript-typescript lsp-typescript tide ts-comint bibliothek org-lookup-dnd company-tabnine forge github-review lsp-dart eglot ac-rtags flymake-rust crux adoc-mode plantuml-mode magithub company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui ac-racer company-racer helm-rg shm helm-dash tldr emamux projectile-ripgrep rg helm-projectile helm-org-rifle ob-ipython ob-rust toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -675,7 +687,7 @@ version 2016-06-15"
 ;; (global-set-key (kbd "<home>") 'xah-backward-left-bracket)
 ;; (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
 
-(pending-delete-mode t)
+(pending-delete-mode nil)
 
 ;;(global-set-key (kbd " '") 'mc/edit-lines)
 
@@ -694,6 +706,8 @@ version 2016-06-15"
 ;; company mode completion
 (eval-after-load 'company-mode
   '(define-key company-mode-map (kbd "M-RET c") 'company-complete-common))
+(eval-after-load 'company-mode
+  '(define-key company-mode-map (kbd "TAB") 'company-indent-or-complete-common))
 
 ;; SET PATH so LateX works
 (getenv "PATH")
@@ -721,6 +735,12 @@ version 2016-06-15"
 (org-babel-load-file (expand-file-name "post-save-hooks.org" user-emacs-directory))
 
 
+;; I know...
+(org-babel-load-file (expand-file-name "typescript.org" user-emacs-directory))
+
+
+
+
 ;; save last session
 (desktop-save-mode t)
 (setq desktop-dirname "~/.emacs.d/desktop/")
@@ -728,7 +748,7 @@ version 2016-06-15"
 ;; We turn ac config on after every configuration.
 (require 'auto-complete-config) ; should be after add-to-list 'ac-modes and hooks
 (ac-config-default)
-(setq ac-auto-start nil)            ; if t starts ac at startup automatically
+(setq ac-auto-start t)            ; if t starts ac at startup automatically
 (setq ac-auto-show-menu t)
 (global-auto-complete-mode t)
 ;;;
