@@ -1,5 +1,16 @@
 # -*- mode: org; -*-
 
+Require rust and racer
+#+BEGIN_SRC emacs-lisp
+  (require 'rust-mode)
+  (require 'racer)
+  (require 'cargo)
+  (require 'eglot)
+#+END_SRC
+
+#+RESULTS:
+: eglot
+
 We format the source code on file save.
 #+BEGIN_SRC emacs-lisp
   (setq rust-format-on-save t)
@@ -19,15 +30,6 @@ We configure the rust path.
 #+RESULTS:
 : /Users/eftychis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
 
-Now setup TAB to autocomplete in rust mode. Then setup clippy from cargo also
-#+BEGIN_SRC emacs-lisp
-  (eval-after-load 'rust-mode
-  '(progn (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-    (define-key cargo-minor-mode-map (kbd "C-c C-c C-y") #'cargo-process-clippy)))
-#+END_SRC
-
-#+RESULTS:
-: cargo-process-clippy
 
 We setup flymake mode for rust now.
 #+BEGIN_SRC emacs-lisp
@@ -42,6 +44,7 @@ We setup flymake mode for rust now.
 Add rust related hooks
 #+BEGIN_SRC emacs-lisp
   (require 'rust-mode)
+  (require 'eglot)
   (unless (fboundp 'lsp-rust-enable)
     (defun lsp-rust-enable ()
       ()))
@@ -63,3 +66,14 @@ anymore, but as we are showcasing it here it is helpful.
 
 #+RESULTS:
 : xref-find-references
+
+
+Now setup TAB to autocomplete in rust mode. Then setup clippy from cargo also
+#+BEGIN_SRC emacs-lisp
+  (eval-after-load 'rust-mode
+  '(progn (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+    (define-key cargo-minor-mode-map (kbd "C-c C-c C-y") #'cargo-process-clippy)))
+#+END_SRC
+
+#+RESULTS:
+: cargo-process-clippy
