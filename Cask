@@ -270,6 +270,7 @@
 (depends-on "smooth-scrolling")
 (depends-on "sublimity")
 (depends-on "swap-buffers")
+(depends-on "swift-mode")
 (depends-on "swiper")
 (depends-on "switch-window")
 (depends-on "sx")
