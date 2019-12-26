@@ -53,9 +53,8 @@
 (require 'company)
 (global-company-mode t)
 
+
 (org-babel-load-file (expand-file-name "rust.org" user-emacs-directory))
-(require 'rust-mode)
-(require 'racer)
 
 (require 'direnv)
 
@@ -484,9 +483,12 @@
 (setq-default TeX-master nil)
 ;; no exempt buffers for god mode
 ;;(setq god-exempt-major-modes nil)
-
-(add-to-list 'god-exempt-major-modes 'latex-preview-pane-mode)
 (setq god-exempt-predicates nil)
+(add-to-list 'god-exempt-major-modes 'latex-preview-pane-mode)
+(add-to-list 'god-exempt-major-modes 'magit-modes)
+(add-to-list 'god-exempt-major-modes 'dired-mode)
+(add-to-list 'god-exempt-major-modes 'pdf-view-mode)
+
 
 (setq default-frame-alist '((cursor-color . "white")))
 
@@ -687,7 +689,7 @@ version 2016-06-15"
 ;; (global-set-key (kbd "<home>") 'xah-backward-left-bracket)
 ;; (global-set-key (kbd "<end>") 'xah-forward-right-bracket)
 
-(pending-delete-mode nil)
+(setq pending-delete-mode nil)
 
 ;;(global-set-key (kbd " '") 'mc/edit-lines)
 
@@ -706,8 +708,10 @@ version 2016-06-15"
 ;; company mode completion
 (eval-after-load 'company-mode
   '(define-key company-mode-map (kbd "M-RET c") 'company-complete-common))
-(eval-after-load 'company-mode
-  '(define-key company-mode-map (kbd "TAB") 'company-indent-or-complete-common))
+;;(eval-after-load 'company-mode
+;;  '
+(define-key company-mode-map (kbd "TAB") 'company-indent-or-complete-common)
+;;)
 
 ;; SET PATH so LateX works
 (getenv "PATH")
