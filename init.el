@@ -1,5 +1,6 @@
 ;;; package -- Summary: initalization
 ;;; Code
+(require 'package)
 (put 'set-goal-column 'disabled nil)
 (setq package-enable-at-startup nil) (package-initialize)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
@@ -8,7 +9,7 @@
 ;;
 (setq sage-shell:sage-root "/Applications/Sage-6.5.app/Contents/MacOS/Sage")
 
-(require 'cask "~/.emacs.d/.cask/25.1/elpa/cask-20161024.1205/cask.el")
+(require 'cask "~/.emacs.d/.cask/27.1/elpa/cask-20200822.1015/cask.el")
 (cask-initialize)
 (require 'pallet)
 (pallet-mode t)
@@ -394,30 +395,25 @@
  ;; If there is more than one, they won't work right.
  '(ansi-color-faces-vector
    [default default default italic underline success warning error])
- '(custom-enabled-themes (quote (monokai)))
+ '(custom-enabled-themes '(monokai))
  '(custom-safe-themes
-   (quote
-    ("f9aede508e587fe21bcfc0a85e1ec7d27312d9587e686a6f5afdbb0d220eab50" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9")))
+   '("f9aede508e587fe21bcfc0a85e1ec7d27312d9587e686a6f5afdbb0d220eab50" "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9" "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9"))
  '(direnv-mode t nil (direnv))
  '(electric-indent-mode nil)
- '(latex-preview-pane-multifile-mode (quote off))
+ '(latex-preview-pane-multifile-mode 'off)
  '(org-agenda-files
-   (quote
-    ("~/.emacs.d/org-mod.org" "/Users/eftychis/TODO/2Read.org" "/Users/eftychis/TODO/Saturday.org" "/Users/eftychis/TODO/_Problems.org" "~/TODO/Friday")))
+   '("~/.emacs.d/org-mod.org" "/Users/eftychis/TODO/2Read.org" "/Users/eftychis/TODO/Saturday.org" "/Users/eftychis/TODO/_Problems.org" "~/TODO/Friday"))
  '(org-modules
-   (quote
-    (org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m org-annotate-file org-learn org-toc)))
+   '(org-bbdb org-bibtex org-docview org-eww org-gnus org-habit org-info org-irc org-mhe org-rmail org-w3m org-annotate-file org-learn org-toc))
  '(package-selected-packages
-   (quote
-    (fzf rust-auto-use swift-mode lsp-javascript-typescript lsp-typescript tide ts-comint bibliothek org-lookup-dnd company-tabnine forge github-review lsp-dart eglot ac-rtags flymake-rust crux adoc-mode plantuml-mode magithub company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui ac-racer company-racer helm-rg shm helm-dash tldr emamux projectile-ripgrep rg helm-projectile helm-org-rifle ob-ipython ob-rust toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers)))
+   '(fzf rust-auto-use swift-mode lsp-javascript-typescript lsp-typescript tide ts-comint bibliothek org-lookup-dnd company-tabnine forge github-review lsp-dart eglot ac-rtags flymake-rust crux adoc-mode plantuml-mode magithub company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui ac-racer company-racer helm-rg shm helm-dash tldr emamux projectile-ripgrep rg helm-projectile helm-org-rifle ob-ipython ob-rust toc-org highlight-indent-guides projectile-direnv circe expand-region magic-latex-buffer nixos-options direnv zones avy-flycheck avy-menu nix-update vimish-fold voca-builder intero flycheck-haskell org-brain org-bullets org-clock-convenience org-clock-today nix-buffer nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc smart-cursor-color hi2 helm-ag-r helm-ag hindent projectile-codesearch hayoo dante pomodoro redtick tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator eagle-eye wrap-region writegood-mode wolfram xkcd function-args irony benchmark-init cff guru-mode shut-up git commander pallet wgrep sx ace-jump-mode alert async auctex avy biblio-core color-theme company concurrent connection ctable dash deferred diminish direx edit-at-point epic epl f gh ghc gntp go-eldoc go-mode go-rename header2 helm-bibtex helm-swoop highlight-indentation ht html-to-markdown htmlize http-post-simple key-chord let-alist lib-requires link log4e logito magit-popup marshal math-symbol-lists noflet org org-mac-link parsebib pcache pkg-info popup pos-tip request seq visual-fill-column yaoddmuse yasnippet magit-rockstar org-magit auto-complete latex-extra latex-pretty-symbols opener go-guru rpn-calc s s-buffer showkey biblio projectile z3-mode x-dict writeroom-mode window-numbering window-layout warm-night-theme use-package textmate synosaurus synonyms synonymous switch-window swap-buffers sublimity smooth-scrolling smex sage-shell-mode ruby-tools rspec-mode python-environment projectile-speedbar outline-magic orglue org-readme org-projectile org-pomodoro move-dup monokai-theme mc-jump magit-gh-pulls latex-unicode-math-mode latex-preview-pane latex-math-preview jazz-theme isearch-symbol-at-point isearch+ idomenu ido-at-point icicles ibuffer-git highlight-chars helm-make helm-ispell helm-hoogle helm-gtags helm-c-yasnippet ham-mode gotest google-this google golint god-mode go-projectile go-dlv go-direx go-complete go-autocomplete gitty git-blame ggtags fm flyspell-popup flycheck-perl6 flycheck-ghcmod flycheck-color-mode-line flycheck-cask epc eno elscreen eldoro ecb dictionary cpputils-cmake company-math company-go company-ghci company-ghc company-cmake company-cabal company-c-headers company-auctex colorsarenice-theme color-theme-twilight color-theme-tango color-theme-monokai cdlatex auto-complete-auctex ag ace-link ace-jump-zap ace-isearch ace-flyspell ac-python ac-math ac-ispell ac-html ac-helm ac-haskell-process ac-etags ac-emoji ac-clang ac-c-headers))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
-   (quote
-    ((TeX-master . pitch\.tex)
+   '((TeX-master . pitch\.tex)
      (TeX-master . \.\./pitch\.tex)
      (reftex-default-ibliography "../bib.bib")
-     (reftex-default-bibliography "bib.bib")))))
+     (reftex-default-bibliography "bib.bib"))))
 ;;(custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
