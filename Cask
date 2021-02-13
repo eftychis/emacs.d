@@ -226,6 +226,7 @@
 (depends-on "org-category-capture")
 (depends-on "org-clock-convenience")
 (depends-on "org-clock-today")
+(depends-on "org-d20")
 (depends-on "org-lookup-dnd")
 (depends-on "org-magit")
 (depends-on "org-pomodoro")
