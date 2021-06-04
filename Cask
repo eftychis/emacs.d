@@ -244,6 +244,7 @@
 (depends-on "pdf-tools")
 (depends-on "pkg-info")
 (depends-on "plantuml-mode")
+(depends-on "poetry")
 (depends-on "pomodoro")
 (depends-on "popup")
 (depends-on "pos-tip")

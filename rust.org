@@ -28,7 +28,7 @@ We configure the rust path.
 #+END_SRC
 
 #+RESULTS:
-: /Users/eftychis/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src
+: /home/gildar/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
 
 
 We setup flymake mode for rust now.
