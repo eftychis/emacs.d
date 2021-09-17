@@ -1,6 +1,3 @@
-;; duplicate-down
-(global-set-key (kbd "M-RET d") 'md-duplicate-down)
-
 ;; search ag
 (global-set-key (kbd "C-(") (lambda ()
 			      (interactive)
