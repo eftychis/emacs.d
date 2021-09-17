@@ -2,7 +2,7 @@
 ;;; Code
 (require 'package)
 (put 'set-goal-column 'disabled nil)
-(setq package-enable-at-startup nil) (package-initialize)
+(setq package-enable-at-startup nil)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
 			 ("marmalade" . "http://marmalade-repo.org/packages/")
 			 ("melpa" . "http://melpa.org/packages/")))
