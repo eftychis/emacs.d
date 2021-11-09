@@ -52,7 +52,7 @@
 (global-set-key (kbd "C-c n") 'narrow-to-region)
 
 ;; duplicate the current line or region
-(global-set-key (kbd "C-c d") 'md-duplicate-down)
+(global-set-key (kbd "C-c d") 'move-dup-duplicate-down)
 ;;(global-set-key (kbd "C-c d") 'duplicate-current-line-or-region)
 
 ;; search with google
