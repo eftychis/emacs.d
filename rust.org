@@ -69,11 +69,12 @@ anymore, but as we are showcasing it here it is helpful.
 
 
 Now setup TAB to autocomplete in rust mode. Then setup clippy from cargo also
-#+BEGIN_SRC emacs-lisp
-  (eval-after-load 'rust-mode
-  '(progn (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
-    (define-key cargo-minor-mode-map (kbd "C-c C-c C-y") #'cargo-process-clippy)))
-#+END_SRC
+# #+BEGIN_SRC emacs-lisp
+#     (eval-after-load 'rust-mode
+#     '(progn (define-key rust-mode-map (kbd "TAB") #'company-indent-or-complete-common)
+# 	    (define-key cargo-minor-mode-map (kbd "C-c C-c C-y") #'cargo-process-clippy))
+#     )
+# #+END_SRC
 
 #+RESULTS:
 : cargo-process-clippy
