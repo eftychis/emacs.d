@@ -231,6 +231,8 @@
 (depends-on "org-d20")
 (depends-on "org-lookup-dnd")
 (depends-on "org-magit")
+(depends-on "org-noter-pdftools")
+(depends-on "org-pdftools")
 (depends-on "org-pomodoro")
 (depends-on "org-projectile")
 (depends-on "org-ql")
