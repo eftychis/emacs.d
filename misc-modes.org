@@ -1,4 +1,4 @@
-Load adoc as necessary.
+Load adoc as necessary. I am not currently using adoc, but I am keeping it enabled as a reminder for future use and for other people's convenience. The loading cost should be trivial.
 #+BEGIN_SRC emacs-lisp
    ;; (require 'adoc-mode)
    (autoload 'adoc-mode "adoc-mode" nil t)
