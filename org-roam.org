@@ -1,0 +1,26 @@
+We need to first tell org roam we do not need to migrate any data.
+#+BEGIN_SRC emacs-lisp
+  (setq org-roam-v2-ack t)
+#+END_SRC
+
+#+RESULTS:
+: t
+
+We are using the `C-c n` prefix already for narrowing functionality. We shall use `C-c m` prefix for `mind.`
+#+BEGIN_SRC emacs-lisp
+  (global-set-key (kbd "C-c m l") 'org-roam-buffer-toggle)
+  (global-set-key (kbd "C-c m f") 'org-roam-node-find)
+  (global-set-key (kbd "C-c m i") 'org-roam-buffer-insert)
+  (define-key org-roam-mode-map (kbd "C-M-.") 'completion-at-point)
+#+END_SRC
+
+#+RESULTS:
+: completion-at-point
+
+We should lastly call org mode setup().
+#+BEGIN_SRC emacs-lisp
+  (org-roam-setup)
+#+END_SRC
+
+#+RESULTS:
+: t
