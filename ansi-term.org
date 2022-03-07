@@ -1,0 +1,30 @@
+By default ansi-term uses its own yank. We need to be able to access
+Emacs clip board, which in term will give us access to the system
+clipboard. To sum up: too many clipboards...
+#+BEGIN_SRC emacs-lisp
+(eval-after-load "term"
+  '(define-key term-raw-map (kbd "C-c C-y") 'term-paste))
+#+END_SRC
+
+#+RESULTS:
+: term-paste
+When we exit the terminal we want to garbage collect the buffer
+also. We register a hook for that reason. We grab the current buffer
+when ansi-term is executing, set up a process sentinel that for each
+process event checks if it is a finished event. If it is it closes
+also the buffer.
+#+BEGIN_SRC emacs-lisp
+(defun oleh-term-exec-hook ()
+  (let* ((buff (current-buffer))
+         (proc (get-buffer-process buff)))
+    (set-process-sentinel
+     proc
+     `(lambda (process event)
+        (if (string= event "finished\n")
+            (kill-buffer ,buff))))))
+
+(add-hook 'term-exec-hook 'oleh-term-exec-hook)
+#+END_SRC
+
+#+RESULTS:
+| oleh-term-exec-hook |

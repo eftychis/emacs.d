@@ -734,6 +734,7 @@ version 2016-06-15"
 (org-babel-load-file (expand-file-name "misc-modes.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "post-save-hooks.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "org-roam.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "ansi-term.org" user-emacs-directory))
 
 
 ;; I know...
