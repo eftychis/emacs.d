@@ -741,10 +741,25 @@ version 2016-06-15"
 (org-babel-load-file (expand-file-name "post-save-hooks.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "org-roam.org" user-emacs-directory))
 (org-babel-load-file (expand-file-name "ansi-term.org" user-emacs-directory))
+;; Set up elfeed for RSS.
+(org-babel-load-file (expand-file-name "rss.org" user-emacs-directory))
 
 
 ;; I know...
 (org-babel-load-file (expand-file-name "typescript.org" user-emacs-directory))
+
+
+;; Setup Vale -- experimentally for now.
+(flycheck-define-checker vale
+  "A checker for prose"
+  :command ("vale" "--output" "line"
+            source)
+  :standard-input nil
+  :error-patterns
+  ((error line-start (file-name) ":" line ":" column ":" (id (one-or-more (not (any ":")))) ":" (message) line-end))
+  :modes (markdown-mode org-mode text-mode)
+  )
+(add-to-list 'flycheck-checkers 'vale 'append)
 
 
 
