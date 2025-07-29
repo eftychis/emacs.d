@@ -33,8 +33,8 @@ We configure the rust path.
 
 We setup flymake mode for rust now.
 #+BEGIN_SRC emacs-lisp
-  (require 'flymake-rust)
-  (add-hook 'rust-mode-hook 'flymake-rust-load)
+;;  (require 'flymake-rust)
+;;  (add-hook 'rust-mode-hook 'flymake-rust-load)
 #+END_SRC
 
 #+RESULTS:
@@ -49,7 +49,7 @@ Add rust related hooks
     (defun lsp-rust-enable ()
       ()))
   (add-hook 'rust-mode-hook #'cargo-minor-mode)
-  (add-hook 'rust-mode-hook #'racer-mode)
+  ;; (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'rust-mode-hook #'eldoc-mode)
   (add-hook 'rust-mode-hook #'company-mode)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)

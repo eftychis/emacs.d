@@ -1,7 +1,15 @@
 # -*- mode: org; -*-
 *
 #+BEGIN_SRC emacs-lisp
-;; (require 'lsp-clients)
-  ;; (require 'lsp-mode)
-  ;; (add-hook 'rust-mode-hook 'lsp-mode)
+    ;; (require 'lsp-clients)
+  (require 'lsp-mode)
+  (require 'lsp-haskell)
+  (add-hook 'rust-mode-hook 'lsp-mode)
+  (add-hook 'haskell-mode-hook 'lsp-mode)
+  ;; Hooks so haskell and literate haskell major modes trigger LSP setup
+  (add-hook 'haskell-mode-hook #'lsp)
+  (add-hook 'haskell-literate-mode-hook #'lsp)
 #+END_SRC
+
+#+RESULTS:
+| lsp |

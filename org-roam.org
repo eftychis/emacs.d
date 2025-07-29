@@ -11,7 +11,7 @@ We are using the `C-c n` prefix already for narrowing functionality. We shall us
   (global-set-key (kbd "C-c m l") 'org-roam-buffer-toggle)
   (global-set-key (kbd "C-c m f") 'org-roam-node-find)
   (global-set-key (kbd "C-c m i") 'org-roam-buffer-insert)
-  (define-key org-roam-mode-map (kbd "C-M-.") 'completion-at-point)
+;;  (define-key org-roam-mode-map (kbd "C-M-.") 'completion-at-point)
 #+END_SRC
 
 #+RESULTS:
@@ -19,7 +19,7 @@ We are using the `C-c n` prefix already for narrowing functionality. We shall us
 
 We should lastly call org mode setup().
 #+BEGIN_SRC emacs-lisp
-  (org-roam-setup)
+;;  (org-roam-setup)
 #+END_SRC
 
 #+RESULTS:
