@@ -2,14 +2,14 @@
 
 Require rust and racer
 #+BEGIN_SRC emacs-lisp
-  (require 'rust-mode)
-  (require 'racer)
-  (require 'cargo)
-  (require 'eglot)
+   (require 'rust-mode)
+   (require 'racer)
+   (require 'cargo)
+  ;; (require 'eglot)
 #+END_SRC
 
 #+RESULTS:
-: eglot
+: cargo
 
 We format the source code on file save.
 #+BEGIN_SRC emacs-lisp
@@ -28,7 +28,7 @@ We configure the rust path.
 #+END_SRC
 
 #+RESULTS:
-: /home/gildar/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src
+: /Users/gildar/.rustup/toolchains/stable-aarch64-apple-darwin/lib/rustlib/src/rust/library
 
 
 We setup flymake mode for rust now.
@@ -44,24 +44,29 @@ We setup flymake mode for rust now.
 Add rust related hooks
 #+BEGIN_SRC emacs-lisp
   (require 'rust-mode)
-  (require 'eglot)
-  (unless (fboundp 'lsp-rust-enable)
-    (defun lsp-rust-enable ()
-      ()))
+  ;; (require 'eglot)
+  ;; (
+  ;;  unless (fboundp 'lsp-rust-enable)
+  ;;   (defun lsp-rust-enable ()
+  ;;     ()))
   (add-hook 'rust-mode-hook #'cargo-minor-mode)
   ;; (add-hook 'rust-mode-hook #'racer-mode)
   (add-hook 'rust-mode-hook #'eldoc-mode)
   (add-hook 'rust-mode-hook #'company-mode)
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
-  (add-hook 'rust-mode-hook #'eglot-ensure)
-  ;;(require 'lsp-clients)
+  ;; (add-hook 'rust-mode-hook #'eglot-ensure)
+  ;; ;
+					  ;(require 'lsp-clients)
 #+END_SRC
+
+#+RESULTS:
+| flycheck-rust-setup | flycheck-mode-set-explicitly |
 
 We add a couple of general eglot bindings. This is not Rust specific
 anymore, but as we are showcasing it here it is helpful.
 #+BEGIN_SRC emacs-lisp
-  (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
-  (define-key eglot-mode-map (kbd "C-c C-h") 'xref-find-references)
+  ;; (define-key eglot-mode-map (kbd "C-c h") 'eglot-help-at-point)
+  ;; (define-key eglot-mode-map (kbd "C-c C-h") 'xref-find-references)
 #+END_SRC
 
 #+RESULTS:
