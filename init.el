@@ -1,11 +1,12 @@
 ;;; package -- Summary: initalization
 ;;; Code
-(require 'package)
+;; (require 'package)
 (put 'set-goal-column 'disabled nil)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.org/packages/")))
+;; (setq package-enable-at-startup nil)
+;; (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;; 			 ("marmalade" . "http://marmalade-repo.org/packages/")
+;; 			 ("melpa" . "http://melpa.org/packages/")))
+
 ;;; Let us install elpaca. First we ned to install the version.
 (defvar elpaca-installer-version 0.11)
 ;;; We need an elpaca directory to place everything under.
@@ -65,13 +66,17 @@
 
 (elpaca-wait)
 
+
+
+
+
 ;;
 (setq sage-shell:sage-root "/Applications/Sage-6.5.app/Contents/MacOS/Sage")
 
-(require 'cask "~/.emacs.d/.cask/27.2/elpa/cask-20220316.1557/cask.el")
-(cask-initialize)
-(require 'pallet)
-(pallet-mode t)
+;; (require 'cask "~/cask/cask.el")
+;; (cask-initialize)
+;; (require 'pallet)
+;; (pallet-mode t)
 (require 'color)
 ;; (require 'benchmark-init)
 
@@ -82,7 +87,7 @@
 (require 'go-autocomplete)
 (require 'auto-complete)
 (global-auto-complete-mode t)
-(package-initialize)
+;; (package-initialize)
 (auto-complete-mode t)
 
 ;; Setup Icicles
