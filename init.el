@@ -103,12 +103,13 @@
 (require 'ido)
 (ido-mode t)
 ;;; activate ecb
-(require 'ecb)
-;;(require 'ecb-autoloads)
+;; (require 'ecb)
+;; (require 'ecb-autoloads)
+(setq ecb-examples-bufferinfo-buffer-name nil)
 (setq stack-trace-on-error t)
-(setq ecb-version-check nil)
-(setq ecb-layout-name "left6")
-(setq ecb-show-sources-in-directories-buffer 'always)
+;; (setq ecb-version-check nil)
+;; (setq ecb-layout-name "left6")
+;; (setq ecb-show-sources-in-directories-buffer 'always)
 
 (require 'company)
 (global-company-mode t)
