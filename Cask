@@ -232,7 +232,7 @@
 (depends-on "org-noter-pdftools")
 (depends-on "org-pdftools")
 (depends-on "org-pomodoro")
-(depends-on "org-project-capture" "3.0.1")
+(depends-on "org-project-capture")
 (depends-on "org-projectile")
 (depends-on "org-ql")
 (depends-on "org-ref")
