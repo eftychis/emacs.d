@@ -1,11 +1,11 @@
 ;;; package -- Summary: initalization
 ;;; Code
-(require 'package)
+;;(require 'package)
 (put 'set-goal-column 'disabled nil)
-(setq package-enable-at-startup nil)
-(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-			 ("marmalade" . "http://marmalade-repo.org/packages/")
-			 ("melpa" . "http://melpa.org/packages/")))
+;; (setq package-enable-at-startup nil)
+;;(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+;;			 ("marmalade" . "http://marmalade-repo.org/packages/")
+;;			 ("melpa" . "http://melpa.org/packages/")))
 ;;; Let us install elpaca. First we ned to install the version.
 (defvar elpaca-installer-version 0.11)
 ;;; We need an elpaca directory to place everything under.
@@ -62,13 +62,13 @@
 (elpaca-install-from-cask "~/.emacs.d/Cask")
 
 
-
 (elpaca-wait)
+(package-initialize)
 
 ;;
 (setq sage-shell:sage-root "/Applications/Sage-6.5.app/Contents/MacOS/Sage")
 
-;; (require 'cask "~/.emacs.d/.cask/27.2/elpa/cask-20220316.1557/cask.el")
+(require 'cask "~/.emacs.d/.cask/27.2/elpa/cask-20220316.1557/cask.el")
 ;;(cask-initialize)
 ;;(require 'pallet)
 ;;(pallet-mode t)
@@ -77,12 +77,12 @@
 
 (exec-path-from-shell-initialize)
 
-(require 'auto-complete-config)
+;;(require 'auto-complete-config)
 
 (require 'go-autocomplete)
 (require 'auto-complete)
 (global-auto-complete-mode t)
-(package-initialize)
+;;(package-initialize)
 (auto-complete-mode t)
 
 ;; Setup Icicles
@@ -469,6 +469,7 @@
      "f9aede508e587fe21bcfc0a85e1ec7d27312d9587e686a6f5afdbb0d220eab50"
      "a2cde79e4cc8dc9a03e7d9a42fabf8928720d420034b66aecc5b665bbf05d4e9"
      "bd7b7c5df1174796deefce5debc2d976b264585d51852c962362be83932873d9"))
+ '(desktop-path '("~/.emacs.d/desktop" "~"))
  '(direnv-mode t nil (direnv))
  '(electric-indent-mode nil)
  '(latex-preview-pane-multifile-mode 'off)
@@ -481,70 +482,75 @@
 	      org-irc org-mhe org-rmail org-w3m org-annotate-file
 	      org-learn org-toc))
  '(package-selected-packages
-   '(pdf-tools yaml yaml-mode flycheck-grammarly elfeed-autotag
-	       elfeed-dashboard elfeed-goodies elfeed-org elfeed
-	       flycheck-vale lsp-latex nix-haskell-mode lsp-python-ms
-	       lsp-haskell org-noter-pdftools org-pdftools
-	       lsp-grammarly websocket f3 fabric racer org-roam
-	       org-roam-server poetry org-d20 fzf rust-auto-use
-	       swift-mode lsp-javascript-typescript lsp-typescript
-	       tide ts-comint bibliothek org-lookup-dnd
-	       company-tabnine forge github-review lsp-dart eglot
-	       ac-rtags crux adoc-mode plantuml-mode magithub
-	       company-lsp helm-lsp lsp-rust lsp-treemacs lsp-ui
-	       ac-racer company-racer helm-rg shm helm-dash tldr
-	       emamux projectile-ripgrep rg helm-projectile
-	       helm-org-rifle ob-ipython ob-rust toc-org
-	       highlight-indent-guides projectile-direnv circe
-	       expand-region magic-latex-buffer nixos-options direnv
-	       zones avy-flycheck avy-menu nix-update vimish-fold
-	       voca-builder flycheck-haskell org-brain org-bullets
-	       org-clock-convenience org-clock-today nix-buffer
-	       nix-mode nix-sandbox helm-hayoo matlab-mode ace-mc
-	       smart-cursor-color hi2 helm-ag-r helm-ag hindent
-	       projectile-codesearch hayoo dante pomodoro redtick
-	       tomatinho gscholar-bibtex gtags gtk-pomodoro-indicator
-	       eagle-eye wrap-region writegood-mode wolfram xkcd
-	       function-args irony benchmark-init cff guru-mode
-	       shut-up git commander pallet wgrep sx ace-jump-mode
-	       alert async auctex avy biblio-core color-theme company
-	       concurrent connection ctable dash deferred diminish
-	       direx edit-at-point epic epl f gh ghc gntp go-eldoc
-	       go-mode go-rename header2 helm-bibtex helm-swoop
-	       highlight-indentation ht html-to-markdown htmlize
-	       http-post-simple key-chord let-alist lib-requires link
-	       log4e logito magit-popup marshal math-symbol-lists
-	       noflet org org-mac-link parsebib pcache pkg-info popup
-	       pos-tip request seq visual-fill-column yaoddmuse
-	       yasnippet magit-rockstar org-magit auto-complete
-	       latex-extra latex-pretty-symbols opener go-guru
-	       rpn-calc s s-buffer showkey biblio projectile z3-mode
-	       x-dict writeroom-mode window-numbering window-layout
-	       warm-night-theme use-package textmate synosaurus
-	       synonyms synonymous switch-window swap-buffers
-	       sublimity smooth-scrolling smex sage-shell-mode
-	       ruby-tools rspec-mode python-environment
-	       projectile-speedbar outline-magic orglue org-readme
-	       org-projectile org-pomodoro move-dup monokai-theme
-	       mc-jump magit-gh-pulls latex-unicode-math-mode
-	       latex-preview-pane latex-math-preview jazz-theme
-	       isearch-symbol-at-point isearch+ idomenu ido-at-point
-	       icicles ibuffer-git highlight-chars helm-make
-	       helm-ispell helm-hoogle helm-gtags helm-c-yasnippet
-	       ham-mode gotest google-this google golint god-mode
-	       go-projectile go-dlv go-direx go-complete
-	       go-autocomplete gitty git-blame ggtags fm
-	       flyspell-popup flycheck-perl6 flycheck-ghcmod
-	       flycheck-color-mode-line flycheck-cask epc eno elscreen
-	       eldoro ecb dictionary cpputils-cmake company-math
-	       company-go company-ghci company-ghc company-cmake
-	       company-cabal company-c-headers company-auctex
-	       colorsarenice-theme color-theme-twilight
-	       color-theme-tango color-theme-monokai cdlatex
-	       auto-complete-auctex ag ace-link ace-jump-zap
-	       ace-isearch ace-flyspell ac-python ac-math ac-ispell
-	       ac-html ac-helm ac-haskell-process ac-etags ac-emoji
-	       ac-clang ac-c-headers))
+   '(ac-c-headers ac-clang ac-emoji ac-etags ac-haskell-process ac-helm
+		  ac-html ac-ispell ac-math ac-python ac-racer
+		  ac-rtags ace-flyspell ace-isearch ace-jump-mode
+		  ace-jump-zap ace-link ace-mc adoc-mode ag alert
+		  async auctex auto-complete auto-complete-auctex avy
+		  avy-flycheck avy-menu benchmark-init biblio
+		  biblio-core bibliothek cdlatex cff circe color-theme
+		  color-theme-monokai color-theme-tango
+		  color-theme-twilight colorsarenice-theme commander
+		  company company-auctex company-c-headers
+		  company-cabal company-cmake company-ghc company-ghci
+		  company-go company-lsp company-math company-racer
+		  company-tabnine concurrent connection cpputils-cmake
+		  crux ctable dante dash deferred dictionary diminish
+		  direnv direx eagle-eye ecb edit-at-point eglot
+		  eldoro elfeed elfeed-autotag elfeed-dashboard
+		  elfeed-goodies elfeed-org elscreen emamux eno epc
+		  epic epl expand-region f f3 fabric flycheck-cask
+		  flycheck-color-mode-line flycheck-ghcmod
+		  flycheck-grammarly flycheck-haskell flycheck-perl6
+		  flycheck-vale flyspell-popup fm forge function-args
+		  fzf ggtags gh ghc git git-blame github-review gitty
+		  gntp go-autocomplete go-complete go-direx go-dlv
+		  go-eldoc go-guru go-mode go-projectile go-rename
+		  god-mode golint google google-this gotest
+		  gscholar-bibtex gtags gtk-pomodoro-indicator
+		  guru-mode ham-mode hayoo header2 helm-ag helm-ag-r
+		  helm-bibtex helm-c-yasnippet helm-dash helm-gtags
+		  helm-hayoo helm-hoogle helm-ispell helm-lsp
+		  helm-make helm-org-rifle helm-projectile helm-rg
+		  helm-swoop hi2 highlight-chars
+		  highlight-indent-guides highlight-indentation
+		  hindent ht html-to-markdown htmlize http-post-simple
+		  ibuffer-git icicles ido-at-point idomenu irony
+		  isearch+ isearch-symbol-at-point jazz-theme
+		  key-chord latex-extra latex-math-preview
+		  latex-pretty-symbols latex-preview-pane
+		  latex-unicode-math-mode let-alist lib-requires link
+		  log4e logito lsp-dart lsp-grammarly lsp-haskell
+		  lsp-javascript-typescript lsp-latex lsp-python-ms
+		  lsp-rust lsp-treemacs lsp-typescript lsp-ui
+		  magic-latex-buffer magit-gh-pulls magit-popup
+		  magit-rockstar magithub marshal math-symbol-lists
+		  matlab-mode mc-jump monokai-theme move-dup
+		  nix-buffer nix-haskell-mode nix-mode nix-sandbox
+		  nix-update nixos-options noflet ob-ipython ob-rust
+		  opener org org-brain org-bullets
+		  org-clock-convenience org-clock-today org-d20
+		  org-lookup-dnd org-mac-link org-magit
+		  org-noter-pdftools org-pdftools org-pomodoro
+		  org-project-capture org-projectile
+		  org-projectile-helm org-readme org-roam
+		  org-roam-server orglue outline-magic pallet parsebib
+		  pcache pdf-tools pkg-info plantuml-mode poetry
+		  pomodoro popup pos-tip projectile
+		  projectile-codesearch projectile-direnv
+		  projectile-ripgrep projectile-speedbar
+		  python-environment racer redtick request rg rpn-calc
+		  rspec-mode ruby-tools rust-auto-use s s-buffer
+		  sage-shell-mode seq shm showkey shut-up
+		  smart-cursor-color smex smooth-scrolling sublimity
+		  swap-buffers swift-mode switch-window sx synonymous
+		  synonyms synosaurus textmate tide tldr toc-org
+		  tomatinho ts-comint use-package vimish-fold
+		  visual-fill-column voca-builder warm-night-theme
+		  websocket wgrep window-layout window-numbering
+		  wolfram wrap-region writegood-mode writeroom-mode
+		  x-dict xkcd yaml yaml-mode yaoddmuse yasnippet
+		  z3-mode zones))
  '(rainbow-identifiers-cie-l*a*b*-lightness 30)
  '(rainbow-identifiers-cie-l*a*b*-saturation 35)
  '(safe-local-variable-values
@@ -879,6 +885,7 @@ version 2016-06-15"
 
 ;; I know...
 (org-babel-load-file (expand-file-name "typescript.org" user-emacs-directory))
+(org-babel-load-file (expand-file-name "load-files.org" user-emacs-directory))
 
 
 ;; Setup Vale -- experimentally for now.
