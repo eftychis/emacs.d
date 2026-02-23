@@ -1,0 +1,14 @@
+# -*- mode: org; -*-
+
+#+BEGIN_SRC emacs-lisp
+(defun open-files-from-list (file)
+  "Open all files listed in FILE."
+  (interactive "fFile containing list of files: ")
+  (with-temp-buffer
+    (insert-file-contents file)
+    (dolist (line (split-string (buffer-string) "\n" t))
+      (find-file line))))
+#+END_SRC
+
+#+RESULTS:
+: open-files-from-list
